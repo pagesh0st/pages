@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torti Dacoi — Deléitate con cada mordisco</title>
+<style>
+/* ------------------- ESTILOS GENERALES ------------------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+body, html { height:100%; overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+
+/* VIDEO DE FONDO */
+.background-video {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
+
+/* CABECERA */
+header {
+  position: fixed; top:0; left:0; right:0;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  z-index:1000;
+}
+.nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:12px 20px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.logo { width:46px; height:46px; border-radius:10px; display:grid; place-items:center; font-weight:700; color:white; background:linear-gradient(135deg,#ff6b6b,#ffd28f); box-shadow:0 8px 24px rgba(2,6,23,0.45);}
+.hero, .producto, .ingredientes, .galeria, .features, .details { width:100%; }
+nav a { margin-left:14px; font-weight:600; color:#0f1724; }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  padding:120px 20px;
+  text-align:center;
+  color:white;
+  background: rgba(0,0,0,0.4);
+}
+.hero h1, .hero h2 { font-size:3em; text-shadow:2px 2px 8px #000; margin-bottom:12px; }
+.hero p { font-size:1.2em; text-shadow:1px 1px 4px #000; margin-bottom:20px; }
+
+/* BOTONES */
+.btn { padding:12px 18px; border-radius:14px; border:none; cursor:pointer; font-weight:700; margin:4px; }
+.btn-primary { background:#ff6b6b; color:white; }
+.btn-ghost { background:transparent; border:1px solid rgba(0,0,0,0.06); color:#0f1724; }
+
+/* SECCIÓN PRODUCTO */
+.producto { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; padding:60px 20px; background:rgba(255,255,255,0.8); }
+.producto img { width:350px; border-radius:20px; margin:20px; transition: transform 0.4s; }
+.producto img:hover { transform:scale(1.1); }
+.descripcion { max-width:600px; margin:20px; color:#333; font-size:1.2em; line-height:1.5; text-align:justify; }
+
+/* INGREDIENTES */
+.ingredientes { background:#f5f5f5; padding:50px 20px; text-align:center; }
+.ingredientes h2 { font-size:2.2em; color:#d2691e; margin-bottom:30px; }
+.ingredientes ul { list-style:none; font-size:1.2em; color:#444; }
+.ingredientes li { margin:10px 0; }
+
+/* GALERÍA */
+.galeria { background:white; padding:60px 20px; text-align:center; }
+.galeria h2 { font-size:2em; color:#e67300; margin-bottom:30px; }
+.galeria-container {
+  display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+}
+.galeria-container img {
+  width:250px; height:200px; object-fit:cover; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.2); transition: transform 0.3s;
+}
+.galeria-container img:hover { transform:scale(1.05); }
+
+/* FEATURES */
+.features { max-width:1200px; margin:40px auto; display:flex; justify-content:space-around; flex-wrap:wrap; gap:18px; }
+.feature { background:rgba(255,255,255,0.08); padding:18px; border-radius:12px; backdrop-filter:blur(6px); width:300px; }
+.feature h4 { margin-bottom:8px; }
+
+/* DETALLES */
+.details { max-width:1200px; margin:30px auto; display:flex; flex-wrap:wrap; gap:24px; padding:0 20px; }
+.specs { background:white; padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(2,6,23,0.45); flex:1; min-width:280px; }
+
+/* FOOTER */
+footer { margin-top:40px; padding:40px 20px; background:linear-gradient(180deg,#fff8f0,#fff); text-align:center; font-size:0.9em; color:#0f1724; }
+footer span { color:#ff9800; font-weight:bold; }
+
+/* RESPONSIVE */
+@media(max-width:980px){ .producto{flex-direction:column;} .hero h1, .hero h2{font-size:2.5em;} .features{flex-direction:column;align-items:center;} .details{flex-direction:column;} }
+</style>
+</head>
+<body>
+
+<!-- VIDEO DE FONDO -->
+<video autoplay muted loop class="background-video">
+  <source src="PixVerse_V5_Image_Text_360P_crea_una_imagen_qu.mp4" type="video/mp4">
+</video>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+       <img src="zz.jpg" alt="Logo de Torti Dacoi" class="logo">
+      <div>
+        <h1>Torti Dacoi</h1>
+        <small style="color:#8b93a7;">Sabor artesanal</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#hero">Inicio</a>
+      <a href="#galeria">Galería</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <h1>Torti Dacoi — La tortita que hace sonreír</h1>
+  <p>Crujiente por fuera, suave por dentro. Hecha con ingredientes naturales y receta casera. Perfecta para cualquier momento.</p>
+</section>
+
+<!-- PRODUCTO -->
+<section class="producto">
+  <img src="tp3.png" alt="Taco Torti Dacoi">
+  <div class="descripcion">
+    <h2>Una experiencia de sabor única</h2>
+    <p>Torti Dacoi combina lo mejor de la cocina artesanal con ingredientes frescos y saludables. Nuestra especialidad: tortillas rellenas con pollo, zanahoria rallada, lechuga y tomate. Todo preparado con amor.</p>
+  </div>
+</section>
+
+<!-- INGREDIENTES -->
+<section class="ingredientes">
+  <h2>Ingredientes Naturales</h2>
+  <ul>
+    <li>🌾 Harina de maíz seleccionada</li>
+    <li>🥕 Zanahoria rallada fresca</li>
+    <li>🍗 Pollo jugoso y tierno</li>
+    <li>🥬 Lechuga crujiente</li>
+    <li>🍅 Tomate natural en rodajas</li>
+  </ul>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria" class="galeria">
+  <h2>Nuestras Delicias</h2>
+  <div class="galeria-container">
+    <img src="pp1.png" alt="Torti Dacoi plato 1">
+    <img src="pp2.png" alt="Torti Dacoi plato 2">
+    <img src="pp3.png" alt="Torti Dacoi plato 3">
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feature">
+    <h4>Hecho a mano</h4>
+    <p>Elaborado en lotes pequeños para mantener el sabor tradicional.</p>
+  </div>
+  <div class="feature">
+    <h4>Sabores únicos</h4>
+    <p>Sabores frescos, naturales y que conquistan tu paladar.</p>
+  </div>
+  <div class="feature">
+    <h4>Empaque ecológico</h4>
+    <p>Materiales reciclables y diseño reutilizable.</p>
+  </div>
+</section>
+
+<!-- DETALLES -->
+<section class="details">
+  <div class="specs">
+    <h3>Ingredientes</h3>
+    <p>Harina de trigo, pollo, zanahoria rallada, lechuga y tomate.</p>
+    <h4>Instrucciones de consumo</h4>
+    <ol>
+      <li>Servir a temperatura ambiente.</li>
+      <li>Acompañar con café o jugo natural.</li>
+      <li>Consumir dentro de 3 días una vez abierto.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  © 2025 <span>Torti Dacoi</span> | Sabor Natural Hecho con Pasión
+</footer>
+
+</body>
+</html>
