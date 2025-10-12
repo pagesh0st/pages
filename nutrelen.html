@@ -111,7 +111,6 @@
             object-fit: cover;
             justify-self: center;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .catalogo-item {
@@ -133,6 +132,7 @@
         }
 
         h2 {
+            font-weight: bold;
             font-size: 2.5rem;
             font-family: 'Times New Roman', Times, serif;
             margin-top: 0;
@@ -308,10 +308,10 @@
 
 <body>
     <div id="menu">
-        <button class="menu-button">Producto</button>
-        <button class="menu-button">Catálogo</button>
-        <button class="menu-button">Ingredientes</button>
-        <button class="menu-button">Nosotros</button>
+        <a href="#producto"><button class="menu-button">Producto</button></a>
+        <a href="#catalogo"><button class="menu-button">Galería</button></a>
+        <a href="#ingredientes"><button class="menu-button">Ingredientes</button></a>
+        <a href="#nosotros"><button class="menu-button">Nosotros</button></a>
     </div>
     <img src="nutrelen-src/logo.jpeg" alt="Logo Nutrelen" class="logo">
     <div id="main">
@@ -348,7 +348,7 @@
                         alt="Producto 1">
                     <img class="catalogo-item" src="nutrelen-src/tríptico de diseño _20251002_062810_0000_page-0002.jpg"
                         alt="Producto 2">
-                    <img class="catalogo-item" src="nutrelen-src/img97.jpg" alt="Producto 3">
+                    <img class="catalogo-item" src="nutrelen-src/poster.jpg" alt="Producto 3">
 
                     <img class="catalogo-item" src="nutrelen-src/img275.jpg" alt="Producto 4">
                 </div>
