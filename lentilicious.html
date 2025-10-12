@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: beige;
+            text-align: center;
+            margin: 0;
+        }
+
+        div {
+            box-shadow: 1px 10px 10px rgba(255, 181, 147, 0.26);
+        }
+
+        h2 {
+            padding: 20px;
+            font-size: 2rem;
+        }
+
+        #icon {
+            background-color: beige;
+            border-radius: 120px;
+            height: 300px;
+            padding: 0;
+            padding: 10px;
+            grid-column: 2;
+            margin: 40px;
+        }
+
+        #menubar {
+            position: fixed;
+            width: 100%;
+            background-color: rgb(228, 192, 152);
+        }
+
+        #plane {
+            display: grid;
+            grid-template-columns: 2fr;
+            grid-template-rows: 2fr;
+            align-items: center;
+            background-color: rgb(228, 192, 152);
+            width: 230px;
+            padding: 60px;
+        }
+
+        #title {
+            color: rgb(100, 62, 47);
+            font-size: 4rem;
+            grid-row: 1;
+        }
+
+        #eslogan {
+            font-family: monospace;
+            color: rgb(100, 62, 47);
+            font-weight: bolder;
+            font-size: 1rem;
+            grid-row: 2;
+        }
+
+        #producto {
+            display: grid;
+            color: rgb(100, 62, 47);
+            background-color: rgb(228, 192, 152);
+            margin-left: 640px;
+
+        }
+
+        #nosotros {
+            color: rgb(100, 62, 47);
+            background-color: rgb(228, 192, 152);
+            margin-right: 240px;
+        }
+
+        #contacto {
+            color: rgb(100, 62, 47);
+            background-color: rgb(228, 192, 152);
+            margin-left: 240px;
+        }
+
+        .menubutton {
+            color: rgb(100, 62, 47);
+            font-weight: bold;
+            background-color: rgb(194, 128, 97);
+            height: 40px;
+            width: 120px;
+            border: none;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="menubar">
+        <button class="menubutton">Producto</button>
+        <button class="menubutton">Nosotros</button>
+        <button class="menubutton">Contacto</button>
+
+    </div>
+
+    <div id="plane">
+        <h1 id="title">LENTILICIOUS</h1>
+        <p id="eslogan">Sabor y salud de un solo bocado.</p>
+        <img id="icon" src="minilogo.png" alt="aaa">
+    </div>
+
+    <div class="molde" id="producto">
+        <h2>PRODUCTO</h2>
+        <img src="BITES.png" alt="">
+    </div>
+
+
+    <div class="molde" id="nosotros">
+        <h2>NOSOTROS</h2>
+        <img src="BITES.png" alt="">
+
+    </div>
+
+    <div class="molde" id="contacto">
+        <H2>CONTACTO</H2>
+        <img src="BITES.png" alt="">
+
+    </div>
+
+</body>
+
+</html>
