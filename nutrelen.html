@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,147 +7,300 @@
     <title>Nutrelen</title>
 
     <style>
+        :root {
+            --color-primary: rgb(49, 21, 9);
+            --color-secondary: rgb(255, 102, 0);
+            --color-background: tan;
+            --color-text: rgb(49, 21, 9);
+            --color-white: white;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            background-color: tan;
-            color: rgb(49, 21, 9);
+            background-color: var(--color-background);
+            color: var(--color-text);
             font-family: Arial, Helvetica, sans-serif;
-        }
-
-        #presentacion {
-            padding-left: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        #titulo {
-            font-size: 5rem;
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-
-        #eslogan {
-            font-size: 2rem;
-            font-weight: bold;
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        #imagen-presentacion {
-
-            height: 400;
-            grid-column: 2;
-            grid-row: 1 / span 2;
-            width: 400px;
-            object-fit: cover;
+            line-height: 1.6;
         }
 
         #menu {
             display: flex;
             position: fixed;
             justify-content: center;
-            background-color: rgb(49, 21, 9);
-            height: 40px;
+            background-color: var(--color-primary);
+            height: 60px;
             width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .logo {
-
-            margin-top: 60px;
             height: 100px;
-            border-radius: 200%;
+            border-radius: 50%;
+            margin-top: 60px;
             padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #main {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 1000px;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .agregados-redes {
+            height: 200px;
         }
 
         .menu-button {
             height: 100%;
-            width: 200px;
+            width: 150px;
             border: none;
-            background-color: rgb(0, 0, 0, 0);
-            font-size: 0.7rem;
+            background-color: transparent;
+            font-size: 1rem;
             font-weight: bold;
-            color: white;
-            margin-left: 10px;
-            margin-right: 10px;
+            color: var(--color-white);
+            margin-left: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .menu-button:hover {
-            background-color: rgb(27, 2, 2);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .menu-button:active {
-            background-color: rgb(255, 102, 0);
+            background-color: var(--color-secondary);
+        }
+
+        #presentacion {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        #titulo {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #eslogan {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #imagen-presentacion {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: cover;
+            justify-self: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .catalogo-item {
-            height: 200px;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .seccion {
-            background-color: rgb(255, 102, 0);
+            background-color: var(--color-secondary);
             border-radius: 20px;
-            box-shadow: 10px 10px 0px rgba(1, 1, 1, 1);
-            padding: 40px;
-            margin: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin: 20px 0;
             margin-bottom: 40px;
         }
 
         h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-family: 'Times New Roman', Times, serif;
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
         footer {
             display: flex;
             margin: 0;
-            padding: 80px;
+            padding: 40px 20px;
             align-items: center;
-            background-color: rgb(49, 21, 9);
-            color: white;
+            background-color: var(--color-primary);
+            color: var(--color-white);
             flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         footer p {
             margin: 10px;
-
         }
 
         #end-logo {
-            height: 100px;
-            margin-top: 0px;
-            margin-left: auto;
-            margin-right: auto;
+            height: 80px;
+            margin-top: 0;
         }
 
         .separador {
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
 
         .agregados {
-            background-color: tan;
-            margin: 20px;
-            height: 300px;
+            background-color: var(--color-background);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
             border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .seccion p {
-            padding-right: 40px;
+            padding-right: 0;
+            margin-bottom: 20px;
         }
 
         hr {
-            border-color: rgb(49, 21, 9);
+            border-color: var(--color-primary);
             border-style: solid;
+            margin: 20px 0;
+        }
+
+        .catalogo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .catalogo-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .catalogo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .ingredientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .ingrediente-item {
+            background-color: var(--color-background);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ingrediente-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .ingrediente-icono {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .ingrediente-nombre {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .ingrediente-descripcion {
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries para Responsividad */
+        @media (min-width: 768px) {
+            #presentacion {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                padding-left: 40px;
+            }
+
+            #titulo {
+                font-size: 4rem;
+                grid-column: 1;
+                grid-row: 1;
+                text-align: left;
+            }
+
+            #eslogan {
+                font-size: 1.8rem;
+                grid-column: 1;
+                grid-row: 2;
+                text-align: left;
+            }
+
+            #imagen-presentacion {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .separador {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .separador p {
+                padding-right: 40px;
+            }
+
+            .menu-button {
+                width: 200px;
+                margin-left: 10px;
+                margin-right: 10px;
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #titulo {
+                font-size: 5rem;
+            }
+
+            #eslogan {
+                font-size: 2rem;
+            }
         }
     </style>
 
@@ -157,15 +310,16 @@
     <div id="menu">
         <button class="menu-button">Producto</button>
         <button class="menu-button">Catálogo</button>
+        <button class="menu-button">Ingredientes</button>
         <button class="menu-button">Nosotros</button>
     </div>
-    <img src="logo.jpeg" alt="" class="logo">
+    <img src="nutrelen-src/logo.jpeg" alt="Logo Nutrelen" class="logo">
     <div id="main">
 
         <div id="presentacion">
             <h1 id="titulo">Nutrelen</h1>
             <p id="eslogan">Nutrición que se siente, sabor que sorprende.</p>
-            <img id="imagen-presentacion" src="presentacion-imagen.png" alt="bebida">
+            <img id="imagen-presentacion" src="nutrelen-src/vaso.png" alt="Bebida Nutrelen">
         </div>
 
         <div id="contenido" class="contenidos">
@@ -183,16 +337,63 @@
                         ingredientes
                         cuidadosamente seleccionados, te proporciona el combustible perfecto para tu día a día, sin
                         remordimientos. Bienvenido a la nutrición inteligente y deliciosa.</p>
-                    <img src="Imagen2.png" class="agregados" alt="">
+                    <img src="nutrelen-src/img253.jpg" class="agregados" alt="Producto Nutrelen">
                 </div>
             </section>
             <section id="catalogo" class="seccion">
-                <h2>Catálogo</h2>
+                <h2>Galería</h2>
                 <hr>
-                <img class="catalogo-item" src="img102.jpg" alt="item">
-                <img class="catalogo-item" src="img253.jpg" alt="item">
-                <img class="catalogo-item" src="img97.jpg" alt="item">
+                <div class="catalogo-grid">
+                    <img class="catalogo-item" src="nutrelen-src/tríptico de diseño _20251002_062810_0000_page-0001.jpg"
+                        alt="Producto 1">
+                    <img class="catalogo-item" src="nutrelen-src/tríptico de diseño _20251002_062810_0000_page-0002.jpg"
+                        alt="Producto 2">
+                    <img class="catalogo-item" src="nutrelen-src/img97.jpg" alt="Producto 3">
 
+                    <img class="catalogo-item" src="nutrelen-src/img275.jpg" alt="Producto 4">
+                </div>
+            </section>
+            <section id="ingredientes" class="seccion">
+                <h2>Ingredientes</h2>
+                <hr>
+                <div class="ingredientes-grid">
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🌱</div>
+                        <div class="ingrediente-nombre">Lentejas</div>
+                        <div class="ingrediente-descripcion">Base principal de nuestra bebida, fuente de proteínas
+                            vegetales y fibra.</div>
+                    </div>
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🥛</div>
+                        <div class="ingrediente-nombre">Leche</div>
+                        <div class="ingrediente-descripcion">Aporta cremosidad y nutrientes esenciales como calcio y
+                            vitamina D.</div>
+                    </div>
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🥫</div>
+                        <div class="ingrediente-nombre">Leche Condensada</div>
+                        <div class="ingrediente-descripcion">Proporciona un dulzor característico y textura suave a la
+                            bebida.</div>
+                    </div>
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🍚</div>
+                        <div class="ingrediente-nombre">Azúcar</div>
+                        <div class="ingrediente-descripcion">Endulzante natural que equilibra el sabor de todos los
+                            ingredientes.</div>
+                    </div>
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🌿</div>
+                        <div class="ingrediente-nombre">Canela en Polvo</div>
+                        <div class="ingrediente-descripcion">Aroma y sabor distintivo con propiedades digestivas y
+                            antioxidantes.</div>
+                    </div>
+                    <div class="ingrediente-item">
+                        <div class="ingrediente-icono">🌼</div>
+                        <div class="ingrediente-nombre">Clavo de Olor</div>
+                        <div class="ingrediente-descripcion">Toque aromático que complementa y realza el perfil de
+                            sabores.</div>
+                    </div>
+                </div>
             </section>
             <section id="nosotros" class="seccion">
                 <h2>Nosotros</h2>
@@ -204,12 +405,19 @@
                 <p>Ser reconocidos como líderes en innovación alimentaria, ofreciendo alternativas saludables que
                     inspiren
                     un cambio positivo en los hábitos de consumo y en el cuidado del medio ambiente.</p>
+
+                <h2>Contacto</h2>
+                <hr>
+                <p>Puedes seguiernos en nuestras redes sociales.</p>
+                <img src="nutrelen-src/facebook-QR.png" class="agregados-redes" alt="">
+                <img src="nutrelen-src/instagram-QR.png" class="agregados-redes" alt="">
             </section>
+
         </div>
     </div>
     <footer>
         <p>© Nutrilen 2025 | 3ro BT C</p>
-        <img src="logo.jpeg" class="logo" id="end-logo" alt="">
+        <img src="nutrelen-src/logo.jpeg" class="logo" id="end-logo" alt="Logo Nutrelen">
     </footer>
 </body>
 
