@@ -39,7 +39,6 @@
         }
 
         .logo {
-
             border-radius: 50%;
             padding: 5px;
         }
@@ -211,38 +210,72 @@
             transform: scale(1.05);
         }
 
-        .ingredientes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+        /* Estilos para los ingredientes desplegables */
+        .ingredientes-container {
+            width: 100%;
             margin-top: 20px;
         }
 
-        .ingrediente-item {
-            background-color: var(--color-background);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .ingrediente-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .ingrediente-icono {
-            font-size: 2.5rem;
+        .ingrediente-desplegable {
             margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .ingrediente-header {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .ingrediente-header:hover {
+            background-color: rgba(49, 21, 9, 0.9);
         }
 
         .ingrediente-nombre {
             font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .ingrediente-icono {
+            margin-right: 10px;
+        }
+
+        .ingrediente-flecha {
+            transition: transform 0.3s ease;
+        }
+
+        .ingrediente-desplegable.activo .ingrediente-flecha {
+            transform: rotate(180deg);
+        }
+
+        .ingrediente-contenido {
+            background-color: var(--color-background);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .ingrediente-desplegable.activo .ingrediente-contenido {
+            padding: 15px;
+            max-height: 200px;
         }
 
         .ingrediente-descripcion {
-            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .ingrediente-origen {
+            font-style: italic;
+            color: var(--color-primary);
+            font-weight: bold;
         }
 
         @media (min-width: 768px) {
@@ -309,7 +342,7 @@
 
 <body>
     <div id="menu">
-    <img src="nutrelen-src/logo.jpeg" alt="Logo Nutrelen" class="logo">
+        <img src="nutrelen-src/logo.jpeg" alt="Logo Nutrelen" class="logo">
         <a href="#producto"><button class="menu-button">Producto</button></a>
         <a href="#catalogo"><button class="menu-button">Galería</button></a>
         <a href="#ingredientes"><button class="menu-button">Ingredientes</button></a>
@@ -337,8 +370,8 @@
                         cada sorbo es un paso hacia un bienestar integral. Su dulzura natural, proveniente de
                         ingredientes
                         cuidadosamente seleccionados, te proporciona el combustible perfecto para tu día a día, sin
-                        remordimientos. Bienvenido a la nutrición inteligente y deliciosa.</p>  
-                    </div>
+                        remordimientos. Bienvenido a la nutrición inteligente y deliciosa.</p>
+                </div>
             </section>
             <section id="catalogo" class="seccion">
                 <h2>Galería</h2>
@@ -357,42 +390,96 @@
             <section id="ingredientes" class="seccion">
                 <h2>Ingredientes</h2>
                 <hr>
-                <div class="ingredientes-grid">
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🌱</div>
-                        <div class="ingrediente-nombre">Lentejas</div>
-                        <div class="ingrediente-descripcion">Base principal de nuestra bebida, fuente de proteínas
-                            vegetales y fibra.</div>
+                <div class="ingredientes-container">
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🌱</span>
+                                Lentejas
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Base principal de nuestra bebida, fuente de proteínas
+                                vegetales y fibra.</div>
+                            <div class="ingrediente-origen">Proviene de la Sierra ecuatoriana, especialmente de las
+                                provincias de Cotopaxi y Chimborazo.</div>
+                        </div>
                     </div>
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🥛</div>
-                        <div class="ingrediente-nombre">Leche</div>
-                        <div class="ingrediente-descripcion">Aporta cremosidad y nutrientes esenciales como calcio y
-                            vitamina D.</div>
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🥛</span>
+                                Leche
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Aporta cremosidad y nutrientes esenciales como calcio y
+                                vitamina D.</div>
+                            <div class="ingrediente-origen">Proviene de la región de la Sierra, principalmente de las
+                                provincias de Pichincha y Tungurahua.</div>
+                        </div>
                     </div>
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🥫</div>
-                        <div class="ingrediente-nombre">Leche Condensada</div>
-                        <div class="ingrediente-descripcion">Proporciona un dulzor característico y textura suave a la
-                            bebida.</div>
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🥫</span>
+                                Leche Condensada
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Proporciona un dulzor característico y textura suave a
+                                la bebida.</div>
+                            <div class="ingrediente-origen">Elaborada con leche de la Sierra ecuatoriana, principalmente
+                                de las provincias de Azuay y Cañar.</div>
+                        </div>
                     </div>
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🍚</div>
-                        <div class="ingrediente-nombre">Azúcar</div>
-                        <div class="ingrediente-descripcion">Endulzante natural que equilibra el sabor de todos los
-                            ingredientes.</div>
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🍚</span>
+                                Azúcar
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Endulzante natural que equilibra el sabor de todos los
+                                ingredientes.</div>
+                            <div class="ingrediente-origen">Proviene de la Costa ecuatoriana, especialmente de las
+                                provincias de Guayas y Los Ríos.</div>
+                        </div>
                     </div>
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🌿</div>
-                        <div class="ingrediente-nombre">Canela en Polvo</div>
-                        <div class="ingrediente-descripcion">Aroma y sabor distintivo con propiedades digestivas y
-                            antioxidantes.</div>
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🌿</span>
+                                Canela en Polvo
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Aroma y sabor distintivo con propiedades digestivas y
+                                antioxidantes.</div>
+                            <div class="ingrediente-origen">Proviene de la Amazonía ecuatoriana, especialmente de las
+                                provincias de Napo y Pastaza.</div>
+                        </div>
                     </div>
-                    <div class="ingrediente-item">
-                        <div class="ingrediente-icono">🌼</div>
-                        <div class="ingrediente-nombre">Clavo de Olor</div>
-                        <div class="ingrediente-descripcion">Toque aromático que complementa y realza el perfil de
-                            sabores.</div>
+                    <div class="ingrediente-desplegable">
+                        <div class="ingrediente-header">
+                            <div class="ingrediente-nombre">
+                                <span class="ingrediente-icono">🌼</span>
+                                Clavo de Olor
+                            </div>
+                            <div class="ingrediente-flecha">▼</div>
+                        </div>
+                        <div class="ingrediente-contenido">
+                            <div class="ingrediente-descripcion">Toque aromático que complementa y realza el perfil de
+                                sabores.</div>
+                            <div class="ingrediente-origen">Proviene de la Costa ecuatoriana, principalmente de las
+                                provincias de Manabí y Esmeraldas.</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -409,13 +496,13 @@
 
                 <h2>Autores</h2>
                 <hr>
-                    <ul>
-                  <li>Stefany Karla Carrera Ponce - Instagram</li>
-                <li>Feranda Valeska Jimenez Moreira - Facebook</li>
-                <li>Scarleth Lorena Vinces Torres - Correo</li>
-                <li>Brissia Taide Pilalo Pizarro - Página web</li>
-                <li>Ayleen Gabriela Arias Chiriguaya - Video publicitario</li>
-                    </ul>
+                <ul>
+                    <li>Stefany Karla Carrera Ponce - Instagram</li>
+                    <li>Feranda Valeska Jimenez Moreira - Facebook</li>
+                    <li>Scarleth Lorena Vinces Torres - Correo</li>
+                    <li>Brissia Taide Pilalo Pizarro - Página web</li>
+                    <li>Ayleen Gabriela Arias Chiriguaya - Video publicitario</li>
+                </ul>
 
                 <h2>Contacto</h2>
                 <hr>
@@ -430,6 +517,29 @@
         <p>© Nutrilen 2025 | 3ro BT C</p>
         <img src="nutrelen-src/logo.jpeg" class="logo" id="end-logo" alt="Logo Nutrelen">
     </footer>
+
+    <script>
+        // Script para manejar los desplegables
+        document.addEventListener('DOMContentLoaded', function() {
+            const desplegables = document.querySelectorAll('.ingrediente-desplegable');
+            
+            desplegables.forEach(desplegable => {
+                const header = desplegable.querySelector('.ingrediente-header');
+                
+                header.addEventListener('click', function() {
+                    // Cerrar todos los demás desplegables
+                    desplegables.forEach(item => {
+                        if (item !== desplegable) {
+                            item.classList.remove('activo');
+                        }
+                    });
+                    
+                    // Abrir/cerrar el desplegable actual
+                    desplegable.classList.toggle('activo');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
