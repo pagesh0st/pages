@@ -30,7 +30,6 @@
         #menu {
             display: flex;
             position: fixed;
-            justify-content: center;
             background-color: var(--color-primary);
             height: 60px;
             width: 100%;
@@ -39,6 +38,7 @@
         }
 
         .logo {
+            justify-self: left;
             border-radius: 50%;
             padding: 5px;
         }
@@ -55,6 +55,11 @@
 
         .agregados-redes {
             height: 200px;
+        }
+
+        #button-area {
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .menu-button {
@@ -212,14 +217,18 @@
 
         /* Estilos para los ingredientes desplegables */
         .ingredientes-container {
+            display:flex;
+            flex-wrap: wrap;
             width: 100%;
             margin-top: 20px;
+            gap: 40px;
         }
 
         .ingrediente-desplegable {
             margin-bottom: 10px;
             border-radius: 10px;
             overflow: hidden;
+            max-width: 320px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -343,8 +352,10 @@
 <body>
     <div id="menu">
         <img src="nutrelen-src/logo.jpeg" alt="Logo Nutrelen" class="logo">
-        <a href="nutrelen-galeria.html"><button class="menu-button">Galería</button></a>
-        <a href="nutrelen-nosotros.html"><button class="menu-button">Nosotros</button></a>
+        <div id="button-area">
+            <a href="nutrelen-galeria.html"><button class="menu-button">Galería</button></a>
+            <a href="nutrelen-nosotros.html"><button class="menu-button">Nosotros</button></a>    
+        </div>
     </div>
     <div id="main">
 
@@ -353,6 +364,8 @@
             <p id="eslogan">Nutrición que se siente, sabor que sorprende.</p>
             <img id="imagen-presentacion" src="nutrelen-src/presentacion-imagen.png" alt="Bebida Nutrelen">
         </div>
+
+        <video src="nutrelen-src/videolelo.mp4" class="agregados" controls></video>
 
         <div id="contenido" class="contenidos">
             <section id="producto" class="seccion">
@@ -375,7 +388,6 @@
                 <h2>Galería</h2>
                 <hr>
                 <div class="catalogo-grid">
-                    <video src="nutrelen-src/videolelo.mp4" class="agregados" controls></video>
                     <img class="catalogo-item" src="nutrelen-src/tríptico de diseño _20251002_062810_0000_page-0001.jpg"
                         alt="Producto 1">
                     <img class="catalogo-item" src="nutrelen-src/tríptico de diseño _20251002_062810_0000_page-0002.jpg"
@@ -383,6 +395,8 @@
                     <img class="catalogo-item" src="nutrelen-src/poster.jpg" alt="Producto 3">
 
                     <img class="catalogo-item" src="nutrelen-src/img275.jpg" alt="Producto 4">
+
+                    <img class="catalogo-item" src="nutrelen-src/camisa-logo.png" alt="producto 5">
                 </div>
             </section>
             <section id="ingredientes" class="seccion">
@@ -484,26 +498,33 @@
         </div>
     </div>
     <footer>
+        <ul>
+            <li>Stefany Karla Carrera Ponce - Instagram</li>
+            <li>Feranda Valeska Jimenez Moreira - Facebook</li>
+            <li>Scarleth Lorena Vinces Torres - Correo</li>
+            <li>Brissia Taide Pilalo Pizarro - Página web</li>
+            <li>Ayleen Gabriela Arias Chiriguaya - Video publicitario</li>
+        </ul>
         <p>© Nutrilen 2025 | 3ro BT C</p>
         <img src="nutrelen-src/logo.jpeg" class="logo" id="end-logo" alt="Logo Nutrelen">
     </footer>
 
     <script>
         // Script para manejar los desplegables
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const desplegables = document.querySelectorAll('.ingrediente-desplegable');
-            
+
             desplegables.forEach(desplegable => {
                 const header = desplegable.querySelector('.ingrediente-header');
-                
-                header.addEventListener('click', function() {
+
+                header.addEventListener('click', function () {
                     // Cerrar todos los demás desplegables
                     desplegables.forEach(item => {
                         if (item !== desplegable) {
                             item.classList.remove('activo');
                         }
                     });
-                    
+
                     // Abrir/cerrar el desplegable actual
                     desplegable.classList.toggle('activo');
                 });
