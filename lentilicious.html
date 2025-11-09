@@ -5,263 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lentilicious - Tortillas de Lentejas</title>
-    <style>
-        :root {
-            --color-fondo: rgb(238, 226, 212);
-            --color-primario: rgb(194, 128, 97);
-            --color-secundario: rgb(228, 192, 152);
-            --color-texto: rgb(100, 62, 47);
-            --color-claro: beige;
-            --color-blanco: white;
-        }
-
-        body {
-            background-color: var(--color-fondo);
-            text-align: center;
-            margin: 0;
-        }
-
-        div {
-            box-shadow: 1px 10px 10px rgba(255, 181, 147, 0.26);
-        }
-
-        h2 {
-            padding: 20px;
-            font-size: 2rem;
-        }
-
-        hr {
-            border-color: var(--color-texto);
-            border-style: solid;
-        }
-
-        section {
-            display: flex;
-            background-color: var(--color-fondo);
-            align-items: center;
-            margin: 40px;
-        }
-
-        footer {
-            background-color: var(--color-primario);
-            color: var(--color-blanco);
-            padding: 20px;
-        }
-
-        #icon {
-            background-color: var(--color-claro);
-            border-radius: 120px;
-            height: 300px;
-            padding: 0;
-            padding: 10px;
-            grid-column: 2;
-            margin: 40px;
-        }
-
-        #menubar {
-            display: flex;
-            position: fixed;
-            width: 100%;
-            height: 40px;
-            background-color: var(--color-primario);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .menubutton {
-            color: var(--color-texto);
-            font-weight: bold;
-            background-color: var(--color-primario);
-            height: 100%;
-            width: 110px;
-            border: none;
-            margin-left: 20px;
-            margin-right: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .menubutton:hover {
-            background-color: var(--color-secundario);
-        }
-
-        .imagen-presentacion {
-            margin: 50px;
-            height: 500px;
-            border-radius: 10px;
-        }
-
-        #plane {
-            display: grid;
-            grid-template-columns: 2fr;
-            grid-template-rows: 2fr;
-            align-items: center;
-            background-color: var(--color-secundario);
-            width: 230px;
-            padding: 60px;
-        }
-
-        #title {
-            color: var(--color-texto);
-            font-size: 4rem;
-            grid-row: 1;
-        }
-
-        #eslogan {
-            font-family: monospace;
-            color: var(--color-texto);
-            font-weight: bolder;
-            font-size: 1rem;
-            grid-row: 2;
-        }
-
-        #contenedor {
-            background-color: var(--color-claro);
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1400px;
-            padding-top: 40px;
-        }
-
-        .molde {
-            max-width: 400px;
-            margin: 60px;
-            padding: 30px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .molde:hover {
-            transform: scale(1.05);
-        }
-
-
-        #producto {
-            color: var(--color-texto);
-            background-color: var(--color-secundario);
-            margin-left: auto;
-            transform: rotate(1grad);
-        }
-
-        #nosotros {
-            color: var(--color-texto);
-            background-color: var(--color-secundario);
-            margin-right: auto;
-            transform: rotate(-1grad);
-        }
-
-        #proceso {
-            color: var(--color-texto);
-            background-color: var(--color-secundario);
-            max-width: 1000px;
-            margin: 60px;
-            padding: 30px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 10px;
-        }
-
-        #contacto {
-            color: var(--color-texto);
-            background-color: var(--color-secundario);
-            margin-left: auto;
-            transform: rotate(-1grad);
-
-        }
-
-        #imagen-presentacion {
-            height: 400px;
-            grid-column: 2;
-            grid-row: 1 / span 2;
-        }
-
-        .ingredientes-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .ingrediente {
-            background-color: var(--color-fondo);
-            border-radius: 10px;
-            padding: 15px;
-            width: 200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .ingrediente:hover {
-            transform: translateY(-5px);
-        }
-
-        .ingrediente h4 {
-            color: var(--color-texto);
-            margin-top: 0;
-            border-bottom: 1px solid var(--color-texto);
-            padding-bottom: 5px;
-        }
-
-        .mision-vision {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .mision, .vision {
-            background-color: var(--color-fondo);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .mision h3, .vision h3 {
-            color: var(--color-texto);
-            border-bottom: 1px solid var(--color-texto);
-            padding-bottom: 5px;
-        }
-
-        @media (max-width:1024px) {
-            section {
-                display: block;
-            }
-
-            #title {
-                font-size: 10vw;
-            }
-
-            #menubar {
-                height: 5vw;
-            }
-
-            .menubutton {
-                width: 15vw;
-                font-size: 2vw;
-                margin: 0;
-            }
-
-            #plane {
-                display: block;
-            }
-
-            .imagen-presentacion {
-                height: 300px;
-                margin: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="lentilicious.css">
 </head>
 
 <body>
 
     <div id="menubar">
-        <button class="menubutton" onclick="scrollToSection('producto')">Producto</button>
-        <button class="menubutton" onclick="scrollToSection('nosotros')">Nosotros</button>
-        <button class="menubutton" onclick="scrollToSection('proceso')">Ingredientes</button>
-        <button class="menubutton" onclick="scrollToSection('contacto')">Contacto</button>
+        <a href="lentilicious-contacto.html"><button class="menubutton">Contacto</button></a>
+        <a href="lentilicious-galeria.html"><button class="menubutton">Galeria</button></a>
+        <a href="lentilicious-contacto.html"><button class="menubutton">Contacto</button></a>
     </div>
 
     <div id="contenedor">
@@ -269,11 +21,13 @@
         <div id="plane">
             <h1 id="title">LENTILICIOUS</h1>
             <p id="eslogan">Sabor y salud de un solo bocado.</p>
-            <img id="imagen-presentacion" src="lentilicious-src/Post y logo.png" alt="Tortillas de lentejas Lentilicious">
+            <img id="imagen-presentacion" src="lentilicious-src/Post y logo.png"
+                alt="Tortillas de lentejas Lentilicious">
         </div>
 
         <section>
-            <img src="lentilicious-src/imagen1.png" class="imagen-presentacion" alt="Tortillas de lentejas Lentilicious">
+            <img src="lentilicious-src/imagen1.png" class="imagen-presentacion"
+                alt="Tortillas de lentejas Lentilicious">
 
             <div class="molde" id="producto">
                 <h2>PRODUCTO</h2>
@@ -290,88 +44,69 @@
         </section>
 
         <section>
-            <div class="molde" id="nosotros">
-                <h2>NOSOTROS</h2>
-                <hr>
-                <p>En Lentilicious, creemos en la alimentación como pilar fundamental para una vida saludable y sostenible. Nuestra pasión por la innovación culinaria nos llevó a crear la primera tortilla 100% de lentejas, combinando tradición y modernidad para ofrecerte una alternativa nutritiva y deliciosa.</p>
-                
-                <div class="mision-vision">
-                    <div class="mision">
-                        <h3>MISIÓN</h3>
-                        <p>Transformar la alimentación cotidiana mediante productos innovadores, nutritivos y sostenibles, ofreciendo alternativas saludables que se adapten a diversos estilos de vida y necesidades dietéticas, sin comprometer el sabor ni la calidad.</p>
-                    </div>
-                    
-                    <div class="vision">
-                        <h3>VISIÓN</h3>
-                        <p>Ser líderes en la revolución alimentaria, inspirando a las personas a adoptar hábitos más saludables y conscientes a través de productos innovadores que combinan nutrición, sabor y sostenibilidad, contribuyendo a un futuro donde la alimentación sea sinónimo de bienestar y placer.</p>
-                    </div>
-                </div>
-            </div>
-            <img src="lentilicious-src/imagen2B.jpg" class="imagen-presentacion" alt="Equipo de Lentilicious">
-        </section>
-
-        <section>
             <div id="proceso">
                 <h2>INGREDIENTES Y BENEFICIOS</h2>
                 <hr>
-                <p>Nuestras tortillas están elaboradas con ingredientes 100% naturales, seleccionados cuidadosamente para ofrecerte el máximo beneficio nutricional.</p>
-                
+                <p>Nuestras tortillas están elaboradas con ingredientes 100% naturales, seleccionados cuidadosamente
+                    para ofrecerte el máximo beneficio nutricional.</p>
+
                 <div class="ingredientes-container">
                     <div class="ingrediente">
                         <h4>LENTEJAS</h4>
-                        <p>Fuente excelente de proteínas vegetales, fibra, hierro y folato. Ayudan a mantener niveles estables de azúcar en sangre y favorecen la salud digestiva.</p>
+                        <p>Fuente excelente de proteínas vegetales, fibra, hierro y folato. Ayudan a mantener niveles
+                            estables de azúcar en sangre y favorecen la salud digestiva.</p>
                     </div>
-                    
+
                     <div class="ingrediente">
                         <h4>AGUA</h4>
-                        <p>Elemento esencial para la hidratación y el correcto funcionamiento de todos los procesos metabólicos del organismo.</p>
+                        <p>Elemento esencial para la hidratación y el correcto funcionamiento de todos los procesos
+                            metabólicos del organismo.</p>
                     </div>
-                    
+
                     <div class="ingrediente">
                         <h4>ZANAHORIA</h4>
-                        <p>Rica en betacaroteno (vitamina A), antioxidantes y fibra. Contribuye a la salud ocular, cutánea y fortalece el sistema inmunológico.</p>
+                        <p>Rica en betacaroteno (vitamina A), antioxidantes y fibra. Contribuye a la salud ocular,
+                            cutánea y fortalece el sistema inmunológico.</p>
                     </div>
-                    
+
                     <div class="ingrediente">
                         <h4>HIERBAS AROMÁTICAS</h4>
-                        <p>Además de aportar sabor, contienen compuestos bioactivos con propiedades antiinflamatorias y antioxidantes que favorecen la salud general.</p>
+                        <p>Además de aportar sabor, contienen compuestos bioactivos con propiedades antiinflamatorias y
+                            antioxidantes que favorecen la salud general.</p>
                     </div>
-                    
+
                     <div class="ingrediente">
                         <h4>PIMIENTO</h4>
-                        <p>Excelente fuente de vitaminas C y A, antioxidantes que fortalecen el sistema inmunológico y protegen contra el daño celular.</p>
+                        <p>Excelente fuente de vitaminas C y A, antioxidantes que fortalecen el sistema inmunológico y
+                            protegen contra el daño celular.</p>
                     </div>
-                    
+
                     <div class="ingrediente">
                         <h4>ADEREZO OPCIONAL</h4>
-                        <p>Preparado con ingredientes naturales para realzar el sabor sin añadir conservantes artificiales ni exceso de sodio.</p>
+                        <p>Preparado con ingredientes naturales para realzar el sabor sin añadir conservantes
+                            artificiales ni exceso de sodio.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section>
-            <img src="lentilicious-src/image3B.jpg" class="imagen-presentacion" alt="Contacto Lentilicious">
-            <div class="molde" id="contacto">
-                <H2>CONTÁCTANOS</H2>
-                <hr>
-                <p>¿Tienes preguntas sobre nuestros productos o quieres saber dónde encontrarnos? Estaremos encantados de ayudarte.</p>
-                <p>Email: info@lentilicious.com</p>
-                <p>Síguenos en redes sociales para estar al día de nuestras novedades y recetas.</p>
-            </div>
-        </section>
 
         <footer>
-            <p>Lentilicious 2025 - Nutrición que transforma</p>
+            <div id="footer-index">
+                <ul>
+                    <li>Morales Piza Edison Franchesco - </li>
+                    <li>Moreno Paredes Nathaly Elena - </li>
+                    <li>Correa Plua Cesar Alejandro - Pagina web</li>
+                    <li>Miranda Pacheco Justin Mathias - Pagina web</li>
+                    <li>Cazares Sanchez Anthoni Israel - </li>
+                </ul>
+
+                <p id="footer-cr">Lentilicious 2025 - Nutrición que transforma</p>
+
+                <img src="lentilicious-src/minilogo.png" id="footer-img" height="200px" alt="">
+            </div>
         </footer>
     </div>
-
-    <script>
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-
 </body>
 
 </html>
