@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanKey - Nosotros</title>
+
+    <style>
+        :root {
+            --color-primary: rgb(25, 40, 65);
+            --color-secondary: rgb(230, 240, 255);
+            --color-background: rgb(245, 248, 255);
+            --color-text: rgb(25, 40, 65);
+            --color-white: white;
+            --color-accent: rgb(0, 150, 255);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        #menu {
+            display: flex;
+            position: fixed;
+            justify-content: center;
+            background-color: var(--color-primary);
+            height: 60px;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            border-radius: 50%;
+            padding: 5px;
+            margin-right: auto;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .agregados-redes {
+            height: 200px;
+        }
+
+        .menu-button {
+            height: 100%;
+            width: 20vw;
+            border: none;
+            background-color: transparent;
+            font-size: 2vw;
+            font-weight: bold;
+            color: var(--color-white);
+            margin-left: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-button:active {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        #presentacion {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        #titulo {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        #eslogan {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--color-accent);
+        }
+
+        #imagen-presentacion {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: cover;
+            justify-self: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .catalogo-item {
+            width: 100vw;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .seccion {
+            background-color: var(--color-secondary);
+            border-radius: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        a {
+            min-width: 0px;
+            max-width: 200px;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 2.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+
+        footer {
+            display: flex;
+            margin: 0;
+            padding: 40px 20px;
+            align-items: center;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        footer p {
+            margin: 10px;
+        }
+
+        #end-logo {
+            height: 80px;
+            margin-top: 0;
+        }
+
+        #nosotros {
+            margin-top: 80px;
+        }
+
+        .separador {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .agregados {
+            background-color: var(--color-background);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .seccion p {
+            padding-right: 0;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border-color: var(--color-primary);
+            border-style: solid;
+            margin: 20px 0;
+        }
+
+        .catalogo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .catalogo-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .catalogo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilos para el equipo */
+        .equipo-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 20px;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .miembro-equipo {
+            background-color: var(--color-background);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .miembro-equipo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .foto-miembro {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--color-accent);
+        }
+
+        .nombre-miembro {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--color-primary);
+        }
+
+        .rol-miembro {
+            font-style: italic;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .descripcion-miembro {
+            font-size: 0.9rem;
+        }
+
+        /* Estilos para valores */
+        .valores-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .valor-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--color-background);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .valor-icono {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .valor-titulo {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        @media (min-width: 768px) {
+            #presentacion {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                padding-left: 40px;
+            }
+
+            #titulo {
+                font-size: 4rem;
+                grid-column: 1;
+                grid-row: 1;
+                text-align: left;
+            }
+
+            #eslogan {
+                font-size: 1.8rem;
+                grid-column: 1;
+                grid-row: 2;
+                text-align: left;
+            }
+
+            #imagen-presentacion {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .separador {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .separador p {
+                padding-right: 40px;
+            }
+
+            .menu-button {
+                width: 200px;
+                margin-left: 10px;
+                margin-right: 10px;
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #titulo {
+                font-size: 5rem;
+            }
+
+            #eslogan {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <img src="nutrelen-src/logo.jpg" alt="Logo ScanKey" class="logo">
+        <a href="scankey.html"><button class="menu-button">Inicio</button></a>
+        <a href="scankey-galeria.html"><button class="menu-button">Galería</button></a>
+        <a href="scankey-contacto.html"><button class="menu-button">Contacto</button></a>
+    </div>
+    <div id="main">
+        <div id="contenido" class="contenidos">
+            <section id="nosotros" class="seccion">
+                <h2>Nosotros</h2>
+                <hr>
+                <h3>Misión</h3>
+                <p>Revolucionar el acceso digital mediante soluciones innovadoras, seguras y fáciles de usar que simplifiquen la vida de las personas y transformen la forma en que interactuamos con los espacios físicos.</p>
+                <h3>Visión</h3>
+                <p>Ser la empresa líder en tecnología de acceso digital a nivel global, estableciendo nuevos estándares de seguridad, conveniencia y sostenibilidad en la gestión de accesos.</p>
+                
+                <h3>Nuestros Valores</h3>
+                <div class="valores-container">
+                    <div class="valor-item">
+                        <div class="valor-icono">🔒</div>
+                        <div class="valor-titulo">Seguridad</div>
+                        <p>La protección de nuestros usuarios es nuestra máxima prioridad en cada producto que desarrollamos.</p>
+                    </div>
+                    <div class="valor-item">
+                        <div class="valor-icono">💡</div>
+                        <div class="valor-titulo">Innovación</div>
+                        <p>Buscamos constantemente nuevas formas de mejorar y simplificar la experiencia de acceso digital.</p>
+                    </div>
+                    <div class="valor-item">
+                        <div class="valor-icono">🤝</div>
+                        <div class="valor-titulo">Colaboración</div>
+                        <p>Trabajamos en equipo y con nuestros clientes para crear soluciones que realmente marquen la diferencia.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            <li>Ariel Camba- pagina web</li>
+            <li>Leon Rivera- triptico</li>
+            <li>Pincay Suarez- video publicitario</li>
+            <li>Ariel Ramos- redes sociales</li>
+        </ul>
+        <p>© ScanKey 2025 | Innovación en Acceso Digital</p>
+        <img src="nutrelen-src/logo2.jpg" class="logo" id="end-logo" alt="Logo ScanKey">
+    </footer>
+</body>
+
+</html>
