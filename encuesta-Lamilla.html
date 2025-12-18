@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta sobre Juegos de Memoria</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        #title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        #description {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        #survey-form {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border-left: 6px solid #6c5ce7;
+        }
+
+        .form-group p {
+            margin-top: 0;
+            font-weight: bold;
+            color: #2d3436;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6c5ce7, #0984e3);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            background: linear-gradient(135deg, #5a4fcf, #0773c7);
+        }
+
+        @media (max-width: 768px) {
+            #survey-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title">🧠 Encuesta sobre Juegos de Memoria</h1>
+    <p id="description">Tu opinión nos ayuda a mejorar la concentración y el aprendizaje</p>
+
+    <form id="survey-form">
+
+        <div class="form-group">
+            <label>
+                Nombre
+                <input type="text" placeholder="Ingresa tu nombre" required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Email
+                <input type="email" placeholder="Ingresa tu email" required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Edad (opcional)
+                <input type="number" min="10" max="120" placeholder="Tu edad">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <p>1. ¿Qué tipo de juegos de memoria prefieres? (puedes elegir más de uno)</p>
+            <label><input type="checkbox"> Juego de parejas</label>
+            <label><input type="checkbox"> Sudoku</label>
+            <label><input type="checkbox"> Sopa de letras</label>
+            <label><input type="checkbox"> Crucigramas</label>
+            <label><input type="checkbox"> Otros</label>
+        </div>
+
+        <div class="form-group">
+            <p>2. ¿Cuál es tu principal motivación para jugar juegos de memoria?</p>
+            <select required>
+                <option disabled selected>Selecciona una opción</option>
+                <option>Diversión</option>
+                <option>Mejorar la concentración</option>
+                <option>Aprendizaje</option>
+                <option>Relajación</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <p>3. ¿Te gustaría que en la escuela o el trabajo se usen juegos de memoria?</p>
+            <label><input type="radio" name="uso" required> Sí</label>
+            <label><input type="radio" name="uso"> No</label>
+        </div>
+
+        <div class="form-group">
+            <p>4. ¿Qué beneficios has experimentado jugando juegos de memoria?</p>
+            <label><input type="checkbox"> Aumento de paciencia</label>
+            <label><input type="checkbox"> Creatividad</label>
+            <label><input type="checkbox"> Otros</label>
+        </div>
+
+        <div class="form-group">
+            <p>5. ¿Recomendarías algún juego de memoria en particular?</p>
+            <textarea placeholder="Escribe tu recomendación aquí"></textarea>
+        </div>
+
+        <button type="submit">🚀 Enviar Encuesta</button>
+
+    </form>
+
+</body>
+</html>
