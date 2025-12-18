@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos de Biblioteca - Proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .authors {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .author-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .institution {
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        nav {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+        
+        .toc-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a6491;
+        }
+        
+        .toc-list {
+            list-style-type: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 15px;
+        }
+        
+        .toc-list a {
+            text-decoration: none;
+            color: #4a6491;
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            background-color: #eef2f7;
+            color: #2c3e50;
+            padding-left: 15px;
+        }
+        
+        .toc-list i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        main {
+            background-color: white;
+            border-radius: 10px;
+            padding: 35px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            color: #4a6491;
+        }
+        
+        .section-content {
+            font-size: 1.05rem;
+            color: #444;
+        }
+        
+        .highlight-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #4a6491;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .glossary {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .term-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid #4a6491;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .term-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .term-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6491;
+        }
+        
+        .feature h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature i {
+            margin-right: 10px;
+            color: #4a6491;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .tool-badge {
+            display: inline-block;
+            background-color: #eef2f7;
+            color: #4a6491;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .glossary {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-book-open"></i> Base de Datos de Biblioteca</h1>
+            <p class="subtitle">Sistema de gestión centralizado y moderno para recursos bibliográficos</p>
+            
+            <div class="authors">
+                <div class="author-card">Mercado Ruiz</div>
+                <div class="author-card">Villasis Medina</div>
+                <div class="author-card">Camba Ariel</div>
+            </div>
+            
+            <p class="institution">Institución Educativa Réplica Vicente Rocafuerte</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-wrapper">
+            <nav>
+                <h2 class="toc-title"><i class="fas fa-list"></i> Índice</h2>
+                <ul class="toc-list">
+                    <li><a href="#resumen"><i class="fas fa-file-alt"></i> Resumen Ejecutivo</a></li>
+                    <li><a href="#introduccion"><i class="fas fa-pen-alt"></i> Introducción</a></li>
+                    <li><a href="#descripcion"><i class="fas fa-project-diagram"></i> Descripción del Proyecto</a></li>
+                    <li><a href="#arquitectura"><i class="fas fa-server"></i> Arquitectura Técnica</a></li>
+                    <li><a href="#glosario"><i class="fas fa-book"></i> Glosario de Términos</a></li>
+                </ul>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eaeaea;">
+                    <p style="font-size: 0.9rem; color: #666;">Herramientas utilizadas:</p>
+                    <div style="margin-top: 10px;">
+                        <span class="tool-badge">GRANDAR</span>
+                        <span class="tool-badge">Gannon</span>
+                        <span class="tool-badge">GRAMAR</span>
+                    </div>
+                </div>
+            </nav>
+            
+            <main>
+                <section id="resumen" class="section">
+                    <h2 class="section-title"><i class="fas fa-file-alt"></i> Resumen Ejecutivo</h2>
+                    <div class="section-content">
+                        <p>El objetivo principal de este proyecto es establecer e implementar un sistema de gestión de bases de datos centralizado y moderno para la biblioteca. Este nuevo sistema busca digitalizar completamente el catálogo de recursos, optimizar los procesos internos de gestión de inventario y préstamos, y mejorar significativamente la experiencia de búsqueda para los usuarios.</p>
+                        
+                        <div class="highlight-box">
+                            <h3>Propósito Adicional</h3>
+                            <p>Esta modernización también prepara la infraestructura tecnológica para integrar futuros formatos digitales como audiolibros y multimedia. En última instancia, el sistema está diseñado para empoderar al personal bibliotecario con herramientas rápidas y precisas, facilitando un servicio al cliente más personalizado y eficiente.</p>
+                        </div>
+                        
+                        <p>Además de la eficiencia operativa, la nueva plataforma tiene como propósito garantizar la integridad y seguridad de todos los registros de usuarios y colecciones.</p>
+                    </div>
+                </section>
+                
+                <section id="introduccion" class="section">
+                    <h2 class="section-title"><i class="fas fa-pen-alt"></i> Introducción</h2>
+                    <div class="section-content">
+                        <p>En un entorno que evoluciona rápidamente hacia la digitalización total, la eficiencia y la accesibilidad de los recursos de información son fundamentales para cualquier institución educativa y cultural. La Biblioteca, como pilar central de apoyo académico y comunitario, requiere una plataforma tecnológica que no solo soporte sus operaciones diarias, sino que también garantice la máxima calidad y velocidad en el servicio a sus usuarios.</p>
+                        
+                        <p>El presente documento detalla la propuesta para la implementación de un Sistema de Gestión de Bases de Datos (BDB) de última generación. Actualmente, los procesos de catalogación, inventario y préstamo dependen de sistemas heredados que limitan la escalabilidad, introducen fricciones operativas y comprometen la experiencia del usuario.</p>
+                        
+                        <p>Este proyecto surge como una respuesta estratégica a la necesidad de modernizar nuestra infraestructura. El objetivo es transformar digitalmente la gestión de recursos bibliográficos, ofreciendo una solución centralizada y robusta que optimizará el trabajo del personal, mejorará la precisión de los datos y, lo más importante, proporcionará a nuestros usuarios una herramienta de búsqueda y acceso a la información fluida, rápida y disponible 24 horas al día, 7 días a la semana.</p>
+                    </div>
+                </section>
+                
+                <section id="descripcion" class="section">
+                    <h2 class="section-title"><i class="fas fa-project-diagram"></i> Descripción General del Proyecto</h2>
+                    <div class="section-content">
+                        <p>Nuestro proyecto consiste en el desarrollo e implementación de un sistema robusto de gestión de bases de datos para la biblioteca, diseñado para modernizar y centralizar todas las operaciones relacionadas con la colección de recursos y los usuarios. El objetivo principal es transformar digitalmente la forma en que la biblioteca opera, pasando de procesos manuales o sistemas anticuados a una plataforma ágil, eficiente y orientada al futuro.</p>
+                        
+                        <p>Esta iniciativa busca no solo optimizar la gestión interna, sino también enriquecer significativamente la interacción de los usuarios con los recursos de la biblioteca, proporcionando herramientas de búsqueda avanzadas y accesibilidad mejorada. Al consolidar la información en una única base de datos, garantizamos la integridad, seguridad y disponibilidad de los datos.</p>
+                        
+                        <div class="features">
+                            <div class="feature">
+                                <h4><i class="fas fa-digital-tachograph"></i> Digitalización y Catalogación</h4>
+                                <p>Transformación de todo el inventario físico (libros, revistas, multimedia) a un formato digital, facilitando su búsqueda y clasificación.</p>
+                            </div>
+                            
+                            <div class="feature">
+                                <h4><i class="fas fa-user-check"></i> Experiencia de Usuario Mejorada</h4>
+                                <p>Una interfaz intuitiva y potentes capacidades de búsqueda para que los usuarios encuentren rápidamente lo que necesitan, desde cualquier lugar.</p>
+                            </div>
+                            
+                            <div class="feature">
+                                <h4><i class="fas fa-robot"></i> Gestión Automatizada</h4>
+                                <p>Optimización de los procesos de préstamo, devolución, reserva y seguimiento de recursos, reduciendo errores y tiempos de espera.</p>
+                            </div>
+                            
+                            <div class="feature">
+                                <h4><i class="fas fa-shield-alt"></i> Seguridad y Confiabilidad de Datos</h4>
+                                <p>Protección de la información del usuario y del inventario, asegurando la consistencia y la trazabilidad de cada operación.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="arquitectura" class="section">
+                    <h2 class="section-title"><i class="fas fa-server"></i> Arquitectura y Metodología Técnica</h2>
+                    <div class="section-content">
+                        <p>La implementación de la base de datos de la biblioteca se fundamenta en una arquitectura técnica, diseñada para garantizar un rendimiento óptimo y la seguridad de los datos. Hemos optado por una solución de base de datos relacional.</p>
+                        
+                        <div class="highlight-box">
+                            <h3>Enfoque de Microservicios</h3>
+                            <p>El sistema se construirá siguiendo un enfoque de microservicios, lo que facilita la modularidad, el despliegue independiente y la escalabilidad de cada componente.</p>
+                        </div>
+                        
+                        <p>La infraestructura se alojará en la nube. Se adoptará una metodología de desarrollo ágil, con iteraciones cortas y retroalimentación constante, para asegurar que el producto final cumpla precisamente con las necesidades de la biblioteca y sus usuarios.</p>
+                    </div>
+                </section>
+                
+                <section id="glosario" class="section">
+                    <h2 class="section-title"><i class="fas fa-book"></i> Glosario de Términos Clave</h2>
+                    <div class="section-content">
+                        <p>Para una comprensión completa del proyecto de la Base de Datos de Biblioteca, a continuación se presentan los términos técnicos y conceptuales más relevantes utilizados en este documento, que abarcan desde la infraestructura hasta la experiencia del usuario.</p>
+                        
+                        <div class="glossary">
+                            <div class="term-card">
+                                <h3 class="term-title">Base de Datos (BD)</h3>
+                                <p>Un conjunto organizado de datos interrelacionados que se almacena y se accede electrónicamente. En este proyecto, es el repositorio central de toda la información de la biblioteca.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Sistema de Gestión de Bases de Datos (SGBD)</h3>
+                                <p>Software que permite a los usuarios y aplicaciones definir, crear, mantener y controlar el acceso a los datos de la base de datos.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Digitalización</h3>
+                                <p>El proceso de convertir información de formatos analógicos o físicos a un formato digital, lo que permite su almacenamiento, procesamiento y acceso electrónico.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Catalogación</h3>
+                                <p>La creación de metadatos descriptivos para los recursos de la biblioteca, permitiendo su organización, búsqueda y recuperación eficiente.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Gestión de Inventario</h3>
+                                <p>El control y seguimiento sistemático de todos los recursos disponibles en la biblioteca, incluyendo su adquisición, ubicación, estado y disponibilidad.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Préstamos</h3>
+                                <p>El proceso mediante el cual los usuarios pueden tomar prestados recursos de la biblioteca por un período determinado, y la gestión de su devolución, renovación y seguimiento.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Recursos Bibliográficos</h3>
+                                <p>Cualquier material de información disponible en la biblioteca, que puede incluir libros, revistas, artículos, audiolibros, videos y otros formatos multimedia.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Metodología Ágil</h3>
+                                <p>Un enfoque de desarrollo de software iterativo e incremental que promueve la colaboración, la entrega temprana y continua, y la adaptación rápida al cambio.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Integridad de Datos</h3>
+                                <p>La exactitud, consistencia y fiabilidad de los datos a lo largo de su ciclo de vida. Asegura que la información en la base de datos es correcta y está libre de errores.</p>
+                            </div>
+                            
+                            <div class="term-card">
+                                <h3 class="term-title">Escalabilidad</h3>
+                                <p>La capacidad de un sistema o red para manejar una cantidad creciente de trabajo o su potencial para ser ampliado para acomodar dicho crecimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer>
+            <p>Documentación del Proyecto de Base de Datos de Biblioteca &copy; 2023</p>
+            <p>Desarrollado para la Institución Educativa Réplica Vicente Rocafuerte</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 30,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Highlight current section in TOC
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.toc-list a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                    link.style.backgroundColor = '#eef2f7';
+                    link.style.color = '#2c3e50';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
