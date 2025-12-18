@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta sobre Biblioteca Virtual</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            color: #FFEE58;
+            background-color: #6A1B9A;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(45deg, #4527A0 25%, transparent 25%), 
+                              linear-gradient(-45deg, #4527A0 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #4527A0 75%), 
+                              linear-gradient(-45deg, transparent 75%, #4527A0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        #title {
+            text-align: center;
+            color: #FFEB3B;
+            margin-bottom: 5px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #E91E63, 4px 4px 0 rgba(0,0,0,0.3);
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            padding: 10px;
+            border: 3px dashed #FFEB3B;
+            background-color: rgba(156, 39, 176, 0.7);
+            margin-top: 20px;
+        }
+
+        #description {
+            text-align: center;
+            color: #81D4FA;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            background-color: rgba(33, 33, 33, 0.8);
+            padding: 15px;
+            border-left: 5px solid #FF9800;
+            border-right: 5px solid #FF9800;
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.5);
+        }
+
+        #survey-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #311B92;
+            border-radius: 0;
+            border: 8px double #FF9800;
+            box-shadow: 10px 10px 0 rgba(255, 87, 34, 0.5), 
+                        inset 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #survey-form::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 235, 59, 0.1) 2px,
+                rgba(255, 235, 59, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 0;
+            border: 2px solid #00BCD4;
+            border-left: 8px solid #FF5722;
+            position: relative;
+            z-index: 1;
+            box-shadow: 5px 5px 0 rgba(0, 188, 212, 0.3);
+        }
+
+        .form-group p {
+            margin-top: 0;
+            font-weight: bold;
+            color: #4FC3F7;
+            font-size: 1.2rem;
+            border-bottom: 1px dotted #4FC3F7;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group span {
+            font-size: 0.9em;
+            color: #B388FF;
+        }
+
+        .imagen-contenedor {
+            text-align: center;
+            border: 5px solid #FFEB3B;
+            padding: 5px;
+            background-color: #000;
+            max-width: 300px;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 20px #FF9800;
+            transform: rotate(-2deg);
+        }
+
+        .imagen-contenedor img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.7) contrast(1.2) saturate(1.5);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+            color: #FFCC80;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding-left: 5px;
+        }
+
+        label:hover {
+            color: #FFEB3B;
+            background-color: rgba(255, 152, 0, 0.2);
+            padding-left: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 2px solid #FF9800;
+            border-radius: 0;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #FFEE58;
+            box-shadow: inset 0 0 10px rgba(255, 152, 0, 0.3);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #00BCD4;
+            box-shadow: 0 0 10px #00BCD4;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+            accent-color: #FF5722;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            background-color: #000;
+            color: #FFEE58;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to bottom, #FF5722, #D84315);
+            color: #FFEB3B;
+            border: none;
+            border-radius: 0;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow: 0 5px 0 #BF360C, 0 10px 20px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom, #FF7043, #E64A19);
+            box-shadow: 0 3px 0 #BF360C, 0 8px 15px rgba(0,0,0,0.5);
+            transform: translateY(2px);
+        }
+
+        button:active {
+            box-shadow: 0 0px 0 #BF360C, 0 3px 10px rgba(0,0,0,0.5);
+            transform: translateY(5px);
+        }
+
+        button::after {
+            content: ">>>";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                text-align: center;
+            }
+            
+            #survey-form {
+                padding: 15px;
+            }
+            
+            .form-group {
+                padding: 15px;
+            }
+            
+            #title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Estilos para las opciones de frecuencia */
+        .frecuencia-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .frecuencia-opciones label {
+            display: flex;
+            align-items: center;
+        }
+        
+        .material-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .material-opciones label {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Efecto de líneas de retro */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.1) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+        
+        /* Estilo retro para los radio buttons y checkboxes */
+        input[type="radio"]::before,
+        input[type="checkbox"]::before {
+            background-color: #FF9800;
+        }
+        
+        /* Animación parpadeante para el título */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        #title {
+            animation: blink 2s infinite;
+        }
+        
+        /* Efecto de brillo para algunos elementos */
+        .glow {
+            text-shadow: 0 0 5px #FF9800, 0 0 10px #FF9800;
+        }
+        
+        /* Estilo para los números de preguntas */
+        .form-group p::before {
+            content: ">>> ";
+            color: #FF5722;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <div class="imagen-contenedor">
+        <img src="Imagen1.jpg" alt="Biblioteca Virtual" onerror="this.style.display='none'">
+    </div>
+    <h1 id="title">Encuesta sobre Biblioteca Virtual</h1>
+    <p id="description">Ayúdanos a conocer tu opinión sobre la implementación de una biblioteca virtual</p>
+    
+    <form id="survey-form">
+        <div class="form-group">
+            <label id="name-label" for="name">
+                Nombre
+                <input id="name" type="text" placeholder="Ingresa tu nombre" required>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <label id="email-label" for="email">
+                Email
+                <input id="email" type="email" placeholder="Ingresa tu email" required>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <label id="number-label" for="number">
+                Edad
+                <span>(opcional)</span>
+                <input id="number" placeholder="Edad" type="number" min="12" max="120">
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">1. ¿Qué tipo de material le gustaría encontrar en la biblioteca virtual?</p>
+            <div class="material-opciones">
+                <label>
+                    <input type="checkbox" name="material" value="libros"> Libros digitales
+                </label>
+                <label>
+                    <input type="checkbox" name="material" value="revistas"> Revistas académicas
+                </label>
+                <label>
+                    <input type="checkbox" name="material" value="articulos"> Artículos científicos
+                </label>
+                <label>
+                    <input type="checkbox" name="material" value="videos"> Video-tutoriales
+                </label>
+                <label>
+                    <input type="checkbox" name="material" value="tesis"> Tesis y trabajos de grado
+                </label>
+                <label>
+                    <input type="checkbox" name="material" value="otros"> Otros materiales
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">2. ¿Consideras que una biblioteca virtual sería útil para los estudiantes de la institución?</p>
+            <label>
+                <input type="radio" name="utilidad" value="muy_util" checked> Muy útil
+            </label>
+            <label>
+                <input type="radio" name="utilidad" value="util"> Útil
+            </label>
+            <label>
+                <input type="radio" name="utilidad" value="poco_util"> Poco útil
+            </label>
+            <label>
+                <input type="radio" name="utilidad" value="nada_util"> Nada útil
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">3. ¿Con qué frecuencia utiliza recursos digitales (como libros en línea o documentos PDF) para estudiar?</p>
+            <div class="frecuencia-opciones">
+                <label>
+                    <input type="radio" name="frecuencia" value="siempre" checked> Siempre
+                </label>
+                <label>
+                    <input type="radio" name="frecuencia" value="frecuentemente"> Frecuentemente
+                </label>
+                <label>
+                    <input type="radio" name="frecuencia" value="ocasionalmente"> Ocasionalmente
+                </label>
+                <label>
+                    <input type="radio" name="frecuencia" value="raramente"> Raramente
+                </label>
+                <label>
+                    <input type="radio" name="frecuencia" value="nunca"> Nunca
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">4. ¿Estaría dispuesto(a) a participar en actividades o capacitaciones para aprender a usar la biblioteca virtual?</p>
+            <label>
+                <input type="radio" name="capacitacion" value="si" checked> Sí, definitivamente
+            </label>
+            <label>
+                <input type="radio" name="capacitacion" value="tal_vez"> Tal vez
+            </label>
+            <label>
+                <input type="radio" name="capacitacion" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">5. ¿Le resultaría fácil utilizar una plataforma virtual para buscar información?</p>
+            <label>
+                <input type="radio" name="facilidad" value="muy_facil" checked> Muy fácil
+            </label>
+            <label>
+                <input type="radio" name="facilidad" value="facil"> Fácil
+            </label>
+            <label>
+                <input type="radio" name="facilidad" value="regular"> Regular
+            </label>
+            <label>
+                <input type="radio" name="facilidad" value="dificil"> Difícil
+            </label>
+            <label>
+                <input type="radio" name="facilidad" value="muy_dificil"> Muy difícil
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p class="glow">Comentarios adicionales o sugerencias sobre la biblioteca virtual:</p>
+            <textarea placeholder="Comparte tus ideas o sugerencias..." rows="4"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <button id="submit" type="submit">Enviar Encuesta</button>
+        </div>
+    </form>
+    
+    <script>
+        // Efecto de sonido retro al enviar el formulario (simulado)
+        document.getElementById('survey-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Crear efecto visual retro de confirmación
+            const button = document.getElementById('submit');
+            const originalText = button.textContent;
+            
+            button.textContent = "ENVIANDO...";
+            button.style.background = "linear-gradient(to bottom, #00BCD4, #0097A7)";
+            
+            // Simular sonido de computadora vieja
+            const beep = new AudioContext();
+            const oscillator = beep.createOscillator();
+            const gainNode = beep.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(beep.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'square';
+            
+            gainNode.gain.setValueAtTime(0.3, beep.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, beep.currentTime + 0.5);
+            
+            oscillator.start(beep.currentTime);
+            oscillator.stop(beep.currentTime + 0.5);
+            
+            // Restaurar después de 2 segundos
+            setTimeout(() => {
+                button.textContent = "¡ENCUESTA ENVIADA!";
+                button.style.background = "linear-gradient(to bottom, #4CAF50, #388E3C)";
+                
+                // Segundo beep
+                setTimeout(() => {
+                    const oscillator2 = beep.createOscillator();
+                    const gainNode2 = beep.createGain();
+                    
+                    oscillator2.connect(gainNode2);
+                    gainNode2.connect(beep.destination);
+                    
+                    oscillator2.frequency.value = 1200;
+                    oscillator2.type = 'square';
+                    
+                    gainNode2.gain.setValueAtTime(0.3, beep.currentTime);
+                    gainNode2.gain.exponentialRampToValueAtTime(0.01, beep.currentTime + 0.3);
+                    
+                    oscillator2.start(beep.currentTime);
+                    oscillator2.stop(beep.currentTime + 0.3);
+                    
+                    // Volver al estado original después de 3 segundos
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = "linear-gradient(to bottom, #FF5722, #D84315)";
+                        alert("¡Gracias por completar la encuesta retro!");
+                    }, 3000);
+                }, 500);
+            }, 2000);
+        });
+        
+        // Efecto de parpadeo en algunos elementos
+        const glowElements = document.querySelectorAll('.glow');
+        setInterval(() => {
+            glowElements.forEach(el => {
+                el.style.textShadow = `0 0 ${5 + Math.random() * 10}px #FF9800, 0 0 ${10 + Math.random() * 15}px #FF9800`;
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
