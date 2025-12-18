@@ -136,41 +136,51 @@
         </div>
 
         <div class="form-group">
-            <p>1. ¿Qué tipo de juegos de memoria prefieres? (puedes elegir más de uno)</p>
-            <label><input type="checkbox"> Juego de parejas</label>
-            <label><input type="checkbox"> Sudoku</label>
-            <label><input type="checkbox"> Sopa de letras</label>
-            <label><input type="checkbox"> Crucigramas</label>
-            <label><input type="checkbox"> Otros</label>
+            <p>1. ¿Sueles jugar juegos de memoria regularmente?</p>
+            <label><input type="radio" name="pregunta1" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta1" value="no"> No</label>
         </div>
 
         <div class="form-group">
-            <p>2. ¿Cuál es tu principal motivación para jugar juegos de memoria?</p>
-            <select required>
-                <option disabled selected>Selecciona una opción</option>
-                <option>Diversión</option>
-                <option>Mejorar la concentración</option>
-                <option>Aprendizaje</option>
-                <option>Relajación</option>
-            </select>
+            <p>2. ¿Consideras que los juegos de memoria mejoran tu concentración?</p>
+            <label><input type="radio" name="pregunta2" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta2" value="no"> No</label>
         </div>
 
         <div class="form-group">
             <p>3. ¿Te gustaría que en la escuela o el trabajo se usen juegos de memoria?</p>
-            <label><input type="radio" name="uso" required> Sí</label>
-            <label><input type="radio" name="uso"> No</label>
+            <label><input type="radio" name="pregunta3" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta3" value="no"> No</label>
         </div>
 
         <div class="form-group">
-            <p>4. ¿Qué beneficios has experimentado jugando juegos de memoria?</p>
-            <label><input type="checkbox"> Aumento de paciencia</label>
-            <label><input type="checkbox"> Creatividad</label>
-            <label><input type="checkbox"> Otros</label>
+            <p>4. ¿Has notado algún beneficio en tu memoria desde que juegas?</p>
+            <label><input type="radio" name="pregunta4" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta4" value="no"> No</label>
         </div>
 
         <div class="form-group">
-            <p>5. ¿Recomendarías algún juego de memoria en particular?</p>
-            <textarea placeholder="Escribe tu recomendación aquí"></textarea>
+            <p>5. ¿Recomendarías los juegos de memoria a otras personas?</p>
+            <label><input type="radio" name="pregunta5" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta5" value="no"> No</label>
+        </div>
+
+        <div class="form-group">
+            <p>6. ¿Prefieres juegos de memoria digitales sobre los físicos (como cartas o tableros)?</p>
+            <label><input type="radio" name="pregunta6" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta6" value="no"> No</label>
+        </div>
+
+        <div class="form-group">
+            <p>7. ¿Crees que los juegos de memoria pueden ayudar a personas mayores?</p>
+            <label><input type="radio" name="pregunta7" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta7" value="no"> No</label>
+        </div>
+
+        <div class="form-group">
+            <p>8. ¿Te sientes más relajado después de jugar juegos de memoria?</p>
+            <label><input type="radio" name="pregunta8" value="si" required> Sí</label>
+            <label><input type="radio" name="pregunta8" value="no"> No</label>
         </div>
 
         <button type="submit">🚀 Enviar Encuesta</button>
