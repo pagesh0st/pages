@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta sobre Diseño 3D</title>
+    
+    <style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+#title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+#description {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+#survey-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.form-group p {
+    margin-top: 0;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group span {
+    font-size: 0.9em;
+    color: #7f8c8d;
+}
+
+.imagen-contenedor {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        text-align: center;
+    }
+    
+    #survey-form {
+        padding: 15px;
+    }
+    
+    .form-group {
+        padding: 10px;
+    }
+}        
+    </style>
+
+</head>
+<body>
+    <div class="imagen-contenedor">
+        <img src="Imagen1.jpg" alt="">
+    </div>
+    <h1 id="title">Encuesta sobre Diseño 3D</h1>
+    
+    <form id="survey-form">
+        <div class="form-group">
+            <label id="name-label" for="name">
+                Nombre
+                <input id="name" type="text" placeholder="Ingresa tu nombre" required>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <label id="email-label" for="email">
+                Email
+                <input id="email" type="email" placeholder="Ingresa tu email" required>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <label id="number-label" for="number">
+                Edad
+                <span>(opcional)</span>
+                <input id="number" placeholder="Edad" type="number" min="12" max="120">
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>1. ¿Has escuchado hablar alguna vez de programas que crean animaciones o imágenes en 3D, como Blender o Unreal Engine?</p>
+            <label>
+                <input type="radio" name="a" value="si" checked> Sí
+            </label>
+            <label>
+                <input type="radio" name="a" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>2. ¿Te gustaría aprender a crear tus propios modelos o animaciones en 3D usando una computadora?</p>
+            <label>
+                <input type="radio" name="b" value="si" checked> Sí
+            </label>
+            <label>
+                <input type="radio" name="b" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>1. ¿Has escuchado hablar alguna vez de programas que crean animaciones o imágenes en 3D, como Blender o Unreal Engine?</p>
+            <label>
+                <input type="radio" name="c" value="si" checked> Sí
+            </label>
+            <label>
+                <input type="radio" name="c" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>1. ¿Has intentado usar alguna aplicación o programa para diseñar o animar algo en 3D?</p>
+            <label>
+                <input type="radio" name="d" value="si" checked> Sí
+            </label>
+            <label>
+                <input type="radio" name="d" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>1. ¿Te interesaria participar en un taller o curso básico para aprender sobre creación y renderizxado en 3D?</p>
+            <label>
+                <input type="radio" name="e" value="si" checked> Sí
+            </label>
+            <label>
+                <input type="radio" name="e" value="no"> No
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <p>Comentarios adicionales o sugerencias:</p>
+            <textarea placeholder="Comparte una idea sobre el tema (:" rows="4"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <button id="submit" type="submit">Enviar Encuesta</button>
+        </div>
+    </form>
+</body>
+</html>
