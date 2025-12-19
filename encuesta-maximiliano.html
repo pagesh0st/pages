@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta sobre Juegos Educativos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f7ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 150, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a6fa5, #2c4d80);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .survey-info {
+            background-color: #e8f1ff;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dashed #4a6fa5;
+        }
+
+        .survey-info i {
+            color: #2c4d80;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .survey-form {
+            padding: 20px 25px;
+        }
+
+        .question-group {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .question-group:last-child {
+            border-bottom: none;
+        }
+
+        .question-group h3 {
+            color: #2c4d80;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .question-group h3 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+            background-color: #f9fbff;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #4a6fa5;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #2c4d80;
+        }
+
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .option {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .option input[type="radio"] {
+            display: none;
+        }
+
+        .option label {
+            display: block;
+            padding: 12px 15px;
+            background-color: white;
+            border: 2px solid #d0d9e8;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .option label:hover {
+            background-color: #edf3ff;
+            border-color: #4a6fa5;
+        }
+
+        .option input[type="radio"]:checked + label {
+            background-color: #4a6fa5;
+            color: white;
+            border-color: #2c4d80;
+        }
+
+        .option .icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #4a6fa5, #2c4d80);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn i {
+            margin-left: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #e8f1ff;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid #d0d9e8;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e8f5;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #4a6fa5, #2c4d80);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .response-counter {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .options-container {
+                flex-direction: column;
+            }
+            
+            .option {
+                min-width: 100%;
+            }
+            
+            .question-text {
+                font-size: 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .pictogram-example {
+            display: flex;
+            align-items: center;
+            background-color: #f0f7ff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .pictogram-example img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-check"></i> Encuesta sobre Juegos Educativos</h1>
+            <p>Tu opinión nos ayuda a crear mejores experiencias de juego</p>
+        </header>
+        
+        <div class="survey-info">
+            <i class="fas fa-info-circle"></i>
+            <p>Esta encuesta contiene preguntas cerradas de Sí y No. Por favor, selecciona la opción que mejor represente tu preferencia.</p>
+        </div>
+        
+        <div class="response-counter">Preguntas: <span id="current">0</span> de <span id="total">10</span> respondidas</div>
+        <div class="progress-bar">
+            <div class="progress" id="progress-bar"></div>
+        </div>
+        
+        <form class="survey-form" id="survey-form">
+            <div class="question-group">
+                <h3><i class="fas fa-gamepad"></i> Preferencias de Juegos</h3>
+                
+                <div class="question-item">
+                    <div class="question-text">1. ¿Prefieres juegos de memoria?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q1-yes" name="q1" value="yes">
+                            <label for="q1-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1-no" name="q1" value="no">
+                            <label for="q1-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">2. ¿Prefieres juegos de matemáticas básicas?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q2-yes" name="q2" value="yes">
+                            <label for="q2-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2-no" name="q2" value="no">
+                            <label for="q2-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">3. ¿Prefieres juegos de rompecabezas?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q3-yes" name="q3" value="yes">
+                            <label for="q3-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3-no" name="q3" value="no">
+                            <label for="q3-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">4. ¿Prefieres juegos de imitación y rol?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q4-yes" name="q4" value="yes">
+                            <label for="q4-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4-no" name="q4" value="no">
+                            <label for="q4-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <h3><i class="fas fa-users"></i> Opinión sobre los Juegos</h3>
+                
+                <div class="question-item">
+                    <div class="question-text">5. ¿Recomendarías estos juegos a otras personas con discapacidad intelectual?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q5-yes" name="q5" value="yes">
+                            <label for="q5-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5-no" name="q5" value="no">
+                            <label for="q5-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">9. ¿Crees que estos juegos podrían ayudar a las personas con discapacidad intelectual?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q9-yes" name="q9" value="yes">
+                            <label for="q9-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9-no" name="q9" value="no">
+                            <label for="q9-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <h3><i class="fas fa-universal-access"></i> Apoyos y Adaptaciones</h3>
+                
+                <div class="question-item">
+                    <div class="question-text">6. ¿Te gusta tener pictogramas o imágenes como apoyo en los juegos?</div>
+                    <div class="pictogram-example">
+                        <i class="fas fa-image" style="font-size: 2rem; color: #4a6fa5; margin-right: 10px;"></i>
+                        <span>Ejemplo: Un pictograma es una imagen que representa una acción o concepto</span>
+                    </div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q6-yes" name="q6" value="yes">
+                            <label for="q6-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6-no" name="q6" value="no">
+                            <label for="q6-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">7. ¿Te gusta tener texto en lectura fácil como apoyo en los juegos?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q7-yes" name="q7" value="yes">
+                            <label for="q7-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7-no" name="q7" value="no">
+                            <label for="q7-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <div class="question-text">8. ¿Te gusta tener instrucciones en audio como apoyo en los juegos?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q8-yes" name="q8" value="yes">
+                            <label for="q8-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8-no" name="q8" value="no">
+                            <label for="q8-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <h3><i class="fas fa-desktop"></i> Preferencias Digitales</h3>
+                
+                <div class="question-item">
+                    <div class="question-text">10. ¿Prefieres juegos digitales con personajes animados?</div>
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" id="q10-yes" name="q10" value="yes">
+                            <label for="q10-yes"><i class="fas fa-check-circle icon"></i> Sí</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10-no" name="q10" value="no">
+                            <label for="q10-no"><i class="fas fa-times-circle icon"></i> No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    Enviar Encuesta <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+        
+        <footer>
+            <p>Encuesta diseñada para personas con discapacidad intelectual &copy; 2023</p>
+            <p>Todas las respuestas son anónimas y confidenciales</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('survey-form');
+            const progressBar = document.getElementById('progress-bar');
+            const currentSpan = document.getElementById('current');
+            const totalSpan = document.getElementById('total');
+            const submitBtn = document.getElementById('submit-btn');
+            const radioButtons = form.querySelectorAll('input[type="radio"]');
+            
+            // Establecer el total de preguntas
+            const totalQuestions = 10;
+            totalSpan.textContent = totalQuestions;
+            
+            // Actualizar barra de progreso y contador
+            function updateProgress() {
+                let answered = 0;
+                
+                // Contar preguntas respondidas
+                for(let i = 1; i <= totalQuestions; i++) {
+                    const questionName = `q${i}`;
+                    const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`);
+                    if(selectedOption) {
+                        answered++;
+                    }
+                }
+                
+                // Actualizar contador y barra
+                currentSpan.textContent = answered;
+                const progressPercentage = (answered / totalQuestions) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                
+                // Cambiar color del botón si todas están respondidas
+                if(answered === totalQuestions) {
+                    submitBtn.style.background = 'linear-gradient(to right, #3a9d5d, #2a7d4d)';
+                } else {
+                    submitBtn.style.background = 'linear-gradient(to right, #4a6fa5, #2c4d80)';
+                }
+            }
+            
+            // Añadir evento a todos los botones de radio
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', updateProgress);
+            });
+            
+            // Manejar el envío del formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let allAnswered = true;
+                const answers = {};
+                
+                // Verificar que todas las preguntas estén respondidas
+                for(let i = 1; i <= totalQuestions; i++) {
+                    const questionName = `q${i}`;
+                    const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`);
+                    
+                    if(!selectedOption) {
+                        allAnswered = false;
+                        break;
+                    } else {
+                        answers[questionName] = selectedOption.value;
+                    }
+                }
+                
+                if(!allAnswered) {
+                    alert('Por favor, responde todas las preguntas antes de enviar la encuesta.');
+                    return;
+                }
+                
+                // Aquí normalmente enviarías los datos a un servidor
+                // Para este ejemplo, mostraremos un resumen
+                let yesCount = 0;
+                let noCount = 0;
+                
+                for(const question in answers) {
+                    if(answers[question] === 'yes') {
+                        yesCount++;
+                    } else {
+                        noCount++;
+                    }
+                }
+                
+                // Mostrar resultados
+                alert(`¡Gracias por completar la encuesta!\n\nRespuestas Sí: ${yesCount}\nRespuestas No: ${noCount}\n\nTus respuestas han sido registradas correctamente.`);
+                
+                // Aquí normalmente resetearías el formulario
+                // form.reset();
+                // updateProgress();
+                
+                // Para este ejemplo, no resetearemos para poder ver las respuestas
+            });
+            
+            // Inicializar progreso
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
