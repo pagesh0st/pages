@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#12051f">
+<title>Para Lucía — La princesita de la corona 👑</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Montserrat:wght@400;600;700&family=Parisienne&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+ background:radial-gradient(ellipse at 15% 0%,rgba(140,60,255,.38),transparent 55%),
+ radial-gradient(ellipse at 90% 100%,rgba(200,90,255,.28),transparent 50%)}
+h2{font-weight:700}
+.seven{font-size:15px;letter-spacing:6px;margin:10px 0 0;filter:drop-shadow(0 0 8px #a566ff)}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  font-family:Montserrat,sans-serif;background:#09020f;color:#fff;
+  min-height:100vh;position:relative;
+}
+#stars,.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#stars{z-index:1}
+.hearts{z-index:1}
+.star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.7;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+.heart{position:absolute;font-size:18px;animation:float 7s linear forwards;opacity:0}
+@keyframes float{0%{transform:translateY(110vh) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translateY(-15vh) rotate(360deg);opacity:0}}
+.scene{
+ position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+ padding:24px;z-index:2;opacity:0;visibility:hidden;transform:scale(1.04);
+ transition:opacity .8s ease,transform .8s ease,visibility .8s;
+}
+.scene.active{opacity:1;visibility:visible;transform:scale(1)}
+.card{
+ width:min(900px,94vw);max-height:90vh;overflow:auto;padding:35px 28px;
+ background:linear-gradient(145deg,rgba(42,12,61,.82),rgba(12,3,26,.9));
+ border:1px solid rgba(190,140,255,.4);border-radius:30px;
+ box-shadow:0 0 70px rgba(174,70,255,.2),inset 0 0 30px rgba(255,255,255,.03);
+ backdrop-filter:blur(12px);text-align:center;
+}
+.crown{font-size:70px;filter:drop-shadow(0 0 20px #d4b3ff);animation:crown 2.2s ease-in-out infinite}
+@keyframes crown{50%{transform:translateY(-9px) rotate(3deg)}}
+.kicker{letter-spacing:5px;text-transform:uppercase;color:#e8caff;font-size:12px;margin:12px 0}
+h1{font-family:Poppins,sans-serif;font-weight:800;letter-spacing:-1px;font-size:clamp(35px,8vw,72px);line-height:1.05;
+background:linear-gradient(90deg,#e9d5ff,#fff,#b57bff,#e9d5ff);
+-webkit-background-clip:text;color:transparent;background-size:300%;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:300%}}
+.script{font-family:Parisienne,cursive;font-size:clamp(32px,7vw,60px);color:#d4b3ff;margin-top:8px}
+.subtitle{color:#dbcde5;margin:18px auto;max-width:650px;line-height:1.7}
+.btn{
+ border:0;border-radius:999px;padding:14px 24px;margin:8px;background:linear-gradient(135deg,#a566ff,#6a2fd4);
+ color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(194,93,255,.25);
+ transition:.25s
+}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.counter{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px 0}
+.time{min-width:85px;padding:14px 10px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.time b{display:block;font-size:28px;color:#d4b3ff}.time span{font-size:10px;color:#bdaec9;text-transform:uppercase}
+.letter{
+ text-align:left;line-height:1.9;color:#eee3f3;font-size:16px;
+ padding:24px;border-radius:22px;background:rgba(0,0,0,.18);border-left:3px solid #d4b3ff;
+}
+.letter p{margin-bottom:14px}
+.gallery{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin:22px auto}
+#s4 .card{width:min(1040px,96vw)}
+/* Imágenes de BTS: de fondo, sin bordes, un poco por detrás de la interfaz */
+.bts-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bts-bg .bg{
+ position:absolute;top:0;bottom:0;width:62vw;background-size:cover;background-position:center 20%;
+ background-repeat:no-repeat;opacity:.5;filter:saturate(1.05) brightness(.9);
+}
+.bts-bg .bg.l{left:0;-webkit-mask-image:linear-gradient(to right,#000 35%,transparent 100%);mask-image:linear-gradient(to right,#000 35%,transparent 100%)}
+.bts-bg .bg.r{right:0;-webkit-mask-image:linear-gradient(to left,#000 35%,transparent 100%);mask-image:linear-gradient(to left,#000 35%,transparent 100%)}
+.bts-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,10,80,.35),rgba(9,2,15,.55))}
+@media(max-width:800px){
+ .bts-bg .bg{left:0;right:0;width:100%;height:50vh;bottom:auto;opacity:.42}
+ .bts-bg .bg.r{top:50vh;height:50vh;-webkit-mask-image:linear-gradient(to top,#000 35%,transparent 100%);mask-image:linear-gradient(to top,#000 35%,transparent 100%)}
+ .bts-bg .bg.l{-webkit-mask-image:linear-gradient(to bottom,#000 35%,transparent 100%);mask-image:linear-gradient(to bottom,#000 35%,transparent 100%)}
+}
+@media(max-width:1000px){.card{background:linear-gradient(145deg,rgba(42,12,61,.72),rgba(12,3,26,.8))}}
+.photo{
+ --r:1;--h:300px;height:var(--h);flex:0 1 calc(var(--r)*var(--h));max-width:100%;min-width:0;
+ border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#291036,#100518);
+ border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;
+ color:#bdaec9;font-size:12px;position:relative
+}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo small{padding:10px}
+.final{position:relative;padding:20px}
+.final h2{font-family:Poppins,sans-serif;font-size:clamp(30px,6vw,54px);color:#d4b3ff;margin:14px 0}
+.final p{font-size:18px;line-height:1.8;color:#eee}
+.signature{font-family:Parisienne;font-size:45px;color:#e6b9ff;margin-top:20px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:#d4b3ff;z-index:50;box-shadow:0 0 12px #d4b3ff}
+.nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#765c80;border:0;padding:0;cursor:pointer}
+.dot.active{background:#d4b3ff;box-shadow:0 0 10px #d4b3ff}
+.music{position:fixed;right:18px;top:18px;z-index:60;width:45px;height:45px;border-radius:50%;border:1px solid #d4b3ff;background:rgba(20,5,30,.7);color:#d4b3ff;cursor:pointer}
+.hidden{display:none!important}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.4);box-shadow:none}
+.btn:disabled:hover{transform:none}
+.lock-note{color:#e8caff;font-size:14px;line-height:1.7;margin:6px auto 14px;max-width:520px}
+.video-box{
+ margin:22px auto;width:100%;max-width:720px;aspect-ratio:16/9;border-radius:22px;overflow:hidden;
+ background:linear-gradient(135deg,#291036,#100518);border:1px solid rgba(190,140,255,.4);
+ box-shadow:0 0 40px rgba(174,70,255,.2);display:flex;align-items:center;justify-content:center;
+ color:#bdaec9;font-size:13px;position:relative
+}
+.video-box video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.video-caption{margin:6px auto 18px;max-width:640px;line-height:1.8;color:#eee3f3}
+.video-caption .script{font-size:clamp(26px,5vw,40px);margin:0 0 8px}
+@media(max-width:650px){.photo{--h:150px}.card{padding:25px 18px}.letter{font-size:14px}.time{min-width:70px}.time b{font-size:23px}}
+
+.birthday-secret,.secret-letter{
+ position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+ padding:22px;background:rgba(6,1,12,.94);backdrop-filter:blur(12px);
+ opacity:0;visibility:hidden;pointer-events:none;transition:opacity .7s ease,visibility .7s ease;
+}
+.birthday-secret.show,.secret-letter.show{opacity:1;visibility:visible;pointer-events:auto}
+.secret-card{
+ position:relative;width:min(700px,94vw);padding:42px 25px;text-align:center;
+ border:2px solid rgba(190,140,255,.75);border-radius:32px;
+ background:radial-gradient(circle at 50% 15%,rgba(190,140,255,.22),transparent 45%),linear-gradient(145deg,#271035,#0c0315);
+ box-shadow:0 0 35px rgba(160,90,255,.45),0 0 100px rgba(173,77,255,.25);
+ animation:secretAppear 1s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes secretAppear{from{transform:scale(.65) translateY(30px);opacity:0}to{transform:scale(1);opacity:1}}
+.gold-crown{font-size:90px;filter:drop-shadow(0 0 15px #c79bff);animation:goldCrown 1.5s ease-in-out infinite alternate}
+@keyframes goldCrown{to{transform:scale(1.08) rotate(2deg);filter:drop-shadow(0 0 30px #c79bff)}}
+.secret-kicker{font-size:11px;letter-spacing:5px;color:#d4b3ff;margin:10px 0}
+.secret-card h2{font-family:Poppins,sans-serif;font-size:clamp(32px,7vw,62px);line-height:1.05;color:#fff}
+.secret-card h2 span{color:#d4b3ff;text-shadow:0 0 20px rgba(190,140,255,.5)}
+.secret-card p{margin:20px auto;line-height:1.7;color:#e8dceb}
+.confetti-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.confetti{position:absolute;top:-20px;width:9px;height:18px;animation:fall linear forwards}
+@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(720deg);opacity:.9}}
+.secret-letter{background:rgba(8,2,15,.96);overflow:auto}
+.secret-paper{
+ position:relative;width:min(650px,94vw);max-height:88vh;overflow:auto;padding:38px 28px;
+ border-radius:24px;background:#f8f1ff;color:#35223d;
+ box-shadow:0 20px 80px rgba(170,110,255,.35);
+ font-family:Georgia,serif;line-height:1.8;text-align:left;
+ animation:paperIn .7s ease;
+}
+@keyframes paperIn{from{transform:translateY(50px) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+.secret-paper h2{text-align:center;font-family:Poppins,sans-serif;color:#5c2870;font-size:36px;margin:5px 0 20px}
+.secret-paper .kicker{text-align:center;color:#7a3fb0;letter-spacing:4px}
+.mini-crown{text-align:center;font-size:45px}
+.secret-paper p{margin:0 0 14px}
+.secret-paper blockquote{
+ margin:20px 0;padding:18px;border-left:4px solid #9d5cff;background:#ece0ff;
+ font-style:italic;color:#6a4770
+}
+.secret-paper .signature{text-align:right;font-size:28px;color:#8c4ca0}
+.close-secret{
+ position:absolute;right:12px;top:8px;border:0;background:none;color:#6b426f;
+ font-size:35px;cursor:pointer;width:44px;height:44px
+}
+@media(prefers-reduced-motion:reduce){
+ .secret-card,.secret-paper,.gold-crown{animation:none}
+ .confetti{animation-duration:0.01ms!important}
+}
+
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="bts-bg" aria-hidden="true"><div class="bg l" data-bts="bts1"></div><div class="bg r" data-bts="bts2"></div></div>
+<div class="hearts"></div>
+<div id="birthdaySecret" class="birthday-secret" aria-hidden="true">
+  <div class="confetti-layer" id="confettiLayer"></div>
+  <div class="secret-card">
+    <div class="gold-crown">💜</div>
+    <div class="secret-kicker">EL MOMENTO HA LLEGADO</div>
+    <h2>¡FELIZ CUMPLEAÑOS,<br><span>PRINCESITA!</span></h2>
+    <p>Son exactamente las <b>15:30</b>.<br>Tu corona acaba de encenderse. ✨</p>
+    <button class="btn" id="openSecret">💌 Abrir carta secreta</button>
+  </div>
+</div>
+
+<div id="secretLetter" class="secret-letter" aria-hidden="true">
+  <div class="secret-paper">
+    <button type="button" class="close-secret" id="closeSecret" aria-label="Cerrar carta">×</button>
+    <div class="mini-crown">💜</div>
+    <div class="kicker">CARTA SECRETA</div>
+    <h2>Para Lucía</h2>
+    <p>Princesita de la corona:</p>
+    <p>Hoy no quería regalarte solamente un “feliz cumpleaños”. Quería dejarte un pequeño recuerdo que pudieras volver a abrir cuando quisieras.</p>
+    <p>Ojalá este nuevo año de tu vida venga lleno de sonrisas sinceras, momentos inesperados y sueños que poco a poco se conviertan en realidad.</p>
+    <p>Y si algún día dudas de lo especial que eres, vuelve aquí y recuerda estas palabras:</p>
+    <blockquote>“Una corona no hace a una princesa. La hace especial la luz que lleva dentro.”</blockquote>
+    <p>Feliz cumpleaños, Lucía. 👑💜<br>Que nunca pierdas tu magia.</p>
+    <div class="signature">Tu princesita siempre tendrá su corona ✨</div>
+  </div>
+</div>
+<div id="progress"></div>
+<button class="music" id="musicBtn" title="Música">♫</button>
+<audio id="music" loop>
+  <!-- Coloca tu canción en esta carpeta con el nombre musica.mp3 -->
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<section class="scene active" id="s0">
+ <div class="card">
+  <div class="kicker">Antes de continuar...</div>
+  <h1>Un deseo para ti</h1>
+  <p class="subtitle">Que nunca te falten motivos para sonreír, personas que te quieran bonito y sueños que te hagan seguir adelante.</p>
+  <div class="counter">
+   <div class="time"><b id="days">00</b><span>Días</span></div>
+   <div class="time"><b id="hours">00</b><span>Horas</span></div>
+   <div class="time"><b id="mins">00</b><span>Minutos</span></div>
+   <div class="time"><b id="secs">00</b><span>Segundos</span></div>
+  </div>
+  <p class="lock-note" id="lockNote">Tu sorpresa se abrirá a las 0:00 del 28 de septiembre. Todavía no se puede avanzar. 🔒</p>
+  <button class="btn next" id="continueBtn" disabled>🔒 Aún no es el momento</button>
+ </div>
+</section>
+
+<section class="scene" id="s1">
+ <div class="card">
+  <div class="crown">💜</div>
+  <div class="kicker">Una pequeña sorpresa para</div>
+  <h1>Lucía</h1>
+  <div class="script">La princesita de la corona</div>
+  <div class="seven" aria-hidden="true">💜 💜 💜 💜 💜 💜 💜</div>
+  <p class="subtitle">Hay personas que llegan a nuestra vida y, sin darse cuenta, hacen que todo tenga un poquito más de magia.</p>
+  <button class="btn next">✨ Abrir mi sorpresa</button>
+ </div>
+</section>
+
+<section class="scene" id="s3">
+ <div class="card">
+  <div class="kicker">Una carta para ti</div>
+  <h1>Querida Lucía</h1>
+  <div class="letter">
+   <p>Si estás leyendo esto, quiero que sepas que esta página fue hecha pensando especialmente en ti.</p>
+   <p>Te digo <b>“la princesita de la corona”</b> porque hay algo en ti que hace que ese apodo tenga sentido: tu forma de ser, tus ocurrencias, tu sonrisa y esa manera tan tuya de hacer especial hasta un momento sencillo.</p>
+   <p>Hoy quiero recordarte algo: <b>mereces cosas bonitas</b>. Mereces reír, cumplir tus sueños, sentirte querida y mirar atrás algún día sabiendo que aprovechaste cada etapa de tu vida.</p>
+   <p>Que esta nueva vuelta al sol venga llena de momentos que quieras guardar para siempre. Y cuando tengas un día difícil, recuerda que incluso las princesas también tienen días grises... pero siempre vuelven a encontrar su corona. 👑</p>
+   <p>Feliz cumpleaños, Lucía. ✨</p>
+  </div>
+  <button class="btn next">📸 Ver nuestros recuerdos</button>
+ </div>
+</section>
+
+<section class="scene" id="s4">
+ <div class="card">
+  <div class="kicker">Pequeños recuerdos</div>
+  <h1>Nuestra historia</h1>
+  <p class="subtitle">Reemplaza estas tarjetas con tus fotos. Solo coloca las imágenes en la carpeta y cambia sus nombres.</p>
+  <div class="gallery">
+   <div class="photo"><img data-foto="foto1" alt="Foto 1"></div>
+   <div class="photo"><img data-foto="foto2" alt="Foto 2"></div>
+   <div class="photo"><img data-foto="foto3" alt="Foto 3"></div>
+   <div class="photo"><img data-foto="foto4" alt="Foto 4"></div>
+   <div class="photo"><img data-foto="foto5" alt="Foto 5"></div>
+   <div class="photo"><img data-foto="foto6" alt="Foto 6"></div>
+  </div>
+  <button class="btn next">🎬 Hay algo más para ti</button>
+ </div>
+</section>
+
+<section class="scene" id="s4v">
+ <div class="card">
+  <div class="kicker">Un recuerdo en movimiento</div>
+  <h1>Mira esto</h1>
+  <div class="video-box" id="videoBox">
+   <video id="giftVideo" controls playsinline preload="metadata">
+    <!-- Coloca tu video en esta carpeta con el nombre video.mp4 -->
+    <source src="video.mp4" type="video/mp4">
+   </video>
+  </div>
+  <div class="video-caption">
+   <div class="script">Hay momentos que valen más en movimiento</div>
+   <p>Guardé este video para ti porque hay recuerdos que las fotos no alcanzan a contar del todo. Dale play, sonríe un poquito y quédate con esto: eres alguien muy especial. 💜</p>
+  </div>
+  <button class="btn next">💌 Tengo algo más que decirte</button>
+ </div>
+</section>
+
+<section class="scene" id="s5">
+ <div class="card">
+  <div class="final">
+   <div class="crown">💜</div>
+   <div class="kicker">Y por último...</div>
+   <h2>Feliz cumpleaños, Lucía</h2>
+   <p>Que la vida te regale miles de razones para sonreír y que nunca dejes de ser esa persona especial que eres.</p>
+   <p>Gracias por existir, por compartir momentos y por darle un poquito de magia a los días.</p>
+   <div class="signature">Para la princesita de la corona ✨</div>
+   <p style="margin-top:22px;font-size:28px">💜 🎤 ✨ 🌙 💜</p>
+   <button class="btn" id="restart">🔄 Volver a vivir la sorpresa</button>
+  </div>
+ </div>
+</section>
+
+<div class="nav" id="nav"></div>
+
+<script>
+const scenes=[...document.querySelectorAll('.scene')];
+const nav=document.getElementById('nav');
+let current=0;
+// La sorpresa se desbloquea a las 0:00 del 28 de septiembre de 2026 (hora local del dispositivo).
+const UNLOCK_AT=new Date(2025,8,28,0,0,0,0);
+const isUnlocked=()=>Date.now()>=UNLOCK_AT.getTime();
+scenes.forEach((_,i)=>{
+ const d=document.createElement('button'); d.className='dot'+(i===0?' active':'');
+ d.onclick=()=>go(i); nav.appendChild(d);
+});
+function go(i){
+ i=Math.max(0,Math.min(scenes.length-1,i));
+ if(!isUnlocked() && i>0) return; // bloqueado hasta la fecha
+ const vid=document.getElementById('giftVideo'); if(vid) vid.pause();
+ current=i;
+ scenes.forEach((s,n)=>s.classList.toggle('active',n===current));
+ [...nav.children].forEach((d,n)=>d.classList.toggle('active',n===current));
+ document.getElementById('progress').style.width=((current)/(scenes.length-1)*100)+'%';
+ if(scenes[current].id==='s5') burst();
+}
+document.querySelectorAll('.next').forEach(b=>b.onclick=()=>go(current+1));
+document.getElementById('restart').onclick=()=>go(1);
+
+for(let i=0;i<90;i++){
+ const s=document.createElement('span'); s.className='star';
+ s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*3+'s'; s.style.animationDuration=(1+Math.random()*3)+'s';
+ document.getElementById('stars').appendChild(s);
+}
+function heart(){
+ const h=document.createElement('span');h.className='heart';
+ h.textContent=['💜','💜','🎶','✨','🎤'][Math.floor(Math.random()*5)];
+ h.style.left=Math.random()*100+'%';h.style.animationDuration=(5+Math.random()*5)+'s';
+ document.querySelector('.hearts').appendChild(h);setTimeout(()=>h.remove(),10000);
+}
+setInterval(heart,650);
+
+function burst(){
+ for(let i=0;i<25;i++) setTimeout(heart,i*70);
+}
+const music=document.getElementById('music'), mb=document.getElementById('musicBtn');
+mb.onclick=async()=>{try{if(music.paused){await music.play();mb.textContent='🔊'}else{music.pause();mb.textContent='♫'}}catch(e){alert('Coloca un archivo llamado musica.mp3 junto al HTML para activar la música.')}};
+
+// Cuenta regresiva hasta que se abra la sorpresa (0:00 del 28 de septiembre).
+// La celebración de cumpleaños sigue saliendo a las 15:30 de ese día.
+let birthdayCelebrationShown=false;
+function getNextBirthday(){
+ const now=new Date();
+ let target=new Date(now.getFullYear(),8,28,15,30,0,0);
+ if(now>=target) target=new Date(now.getFullYear()+1,8,28,15,30,0,0);
+ return target;
+}
+function isBirthdayMoment(){
+ const now=new Date();
+ return now.getMonth()===8 && now.getDate()===28 &&
+        now.getHours()===15 && now.getMinutes()===30;
+}
+function updateLock(){
+ const btn=document.getElementById('continueBtn'), note=document.getElementById('lockNote');
+ if(isUnlocked()){
+  btn.disabled=false; btn.textContent='💜 Continuar';
+  note.textContent='Y ahora sí... llegó tu momento. 💜';
+ }else{
+  btn.disabled=true; btn.textContent='🔒 Aún no es el momento';
+  note.textContent='Tu sorpresa se abrirá a las 0:00 del 28 de septiembre. Todavía no se puede avanzar. 🔒';
+ }
+}
+function countdown(){
+ const diff=Math.max(0,UNLOCK_AT.getTime()-Date.now());
+ updateLock();
+ let x=diff;
+ const d=Math.floor(x/86400000);x%=86400000;
+ const h=Math.floor(x/3600000);x%=3600000;
+ const m=Math.floor(x/60000);x%=60000;
+ const s=Math.floor(x/1000);
+ document.getElementById('days').textContent=String(d).padStart(2,'0');
+ document.getElementById('hours').textContent=String(h).padStart(2,'0');
+ document.getElementById('mins').textContent=String(m).padStart(2,'0');
+ document.getElementById('secs').textContent=String(s).padStart(2,'0');
+ if(isBirthdayMoment() && !birthdayCelebrationShown) showBirthdayCelebration();
+}
+function createConfetti(){
+ const layer=document.getElementById('confettiLayer');
+ layer.innerHTML='';
+ const symbols=['✦','✧','◆','●','★'];
+ for(let i=0;i<90;i++){
+   const c=document.createElement('span');
+   c.className='confetti';
+   c.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+   c.style.left=Math.random()*100+'%';
+   c.style.color=['#d4b3ff','#f7a8ff','#ffffff','#c98cff','#ffe9a6'][Math.floor(Math.random()*5)];
+   c.style.fontSize=(8+Math.random()*14)+'px';
+   c.style.animationDuration=(3+Math.random()*4)+'s';
+   c.style.animationDelay=(Math.random()*1.8)+'s';
+   c.style.setProperty('--drift',(Math.random()*220-110)+'px');
+   layer.appendChild(c);
+ }
+}
+function showBirthdayCelebration(){
+ birthdayCelebrationShown=true;
+ createConfetti();
+ document.getElementById('birthdaySecret').classList.add('show');
+ document.getElementById('birthdaySecret').setAttribute('aria-hidden','false');
+ for(let i=0;i<25;i++) setTimeout(heart,i*45);
+}
+document.getElementById('openSecret').addEventListener('click',()=>{
+ document.getElementById('birthdaySecret').classList.remove('show');
+ document.getElementById('birthdaySecret').setAttribute('aria-hidden','true');
+ document.getElementById('secretLetter').classList.add('show');
+ document.getElementById('secretLetter').setAttribute('aria-hidden','false');
+ createConfetti();
+});
+document.getElementById('closeSecret').addEventListener('click',()=>{
+ document.getElementById('secretLetter').classList.remove('show');
+ document.getElementById('secretLetter').setAttribute('aria-hidden','true');
+});
+// Carga de imágenes: prueba varias extensiones y muestra un aviso si falta el archivo
+const EXTS=['jpg','jpeg','png','webp'];
+function loadImg(img,base,onLoad,failHTML){
+ let k=0;
+ img.onload=()=>onLoad&&onLoad(img);
+ img.onerror=()=>{
+  k++;
+  if(k<EXTS.length) img.src=base+'.'+EXTS[k];
+  else img.parentElement.innerHTML=failHTML;
+ };
+ img.src=base+'.'+EXTS[0];
+}
+// Galería: cada foto se acomoda según su proporción (vertical, horizontal o cuadrada)
+document.querySelectorAll('.photo img').forEach(img=>{
+ const base=img.dataset.foto;
+ loadImg(img,base,i=>{
+  const r=Math.min(2.5,Math.max(.45,i.naturalWidth/i.naturalHeight));
+  i.parentElement.style.setProperty('--r',r);
+ },'<small>📷 '+base+'.jpg</small>');
+});
+// Fondos de BTS: bts1 (izquierda) y bts2 (derecha); prueba varias extensiones
+document.querySelectorAll('.bts-bg .bg').forEach(el=>{
+ const base=el.dataset.bts; let k=0;
+ const t=new Image();
+ t.onload=()=>{el.style.backgroundImage='url('+t.src+')'};
+ t.onerror=()=>{k++; if(k<EXTS.length) t.src=base+'.'+EXTS[k]};
+ t.src=base+'.'+EXTS[0];
+});
+const gv=document.getElementById('giftVideo');
+if(gv){gv.querySelector('source').addEventListener('error',()=>{
+ document.getElementById('videoBox').innerHTML='<small>🎬 Coloca tu video como video.mp4 junto a este archivo</small>';
+});}
+countdown();setInterval(countdown,1000);
+</script>
+</body>
+</html>
